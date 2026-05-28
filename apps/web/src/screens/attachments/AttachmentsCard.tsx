@@ -447,13 +447,20 @@ export function AttachmentPreviewModal({
   // Resolve the URL to render. Images reuse the thumbnail blob URL; PDFs
   // (and unknown types) fetch fresh so we don't keep a large blob in memory
   // until the modal opens.
+  // Key the effect on the attachment *id* (a stable string), not the whole
+  // object — otherwise an unrelated parent re-render (e.g. notes saved →
+  // query invalidates → `items.find()` returns a new reference for the same
+  // row) revokes the blob URL the iframe is still displaying, and Chrome
+  // shows ERR_FILE_NOT_FOUND for a beat until the refetch lands.
+  const attachmentId = attachment?.attachmentId ?? null;
+  const isImageDep = attachment?.isImage ?? false;
   useEffect(() => {
-    if (!attachment) {
+    if (!attachmentId) {
       setObjectUrl(null);
       setLoadError(null);
       return;
     }
-    if (attachment.isImage && previewUrl) {
+    if (isImageDep && previewUrl) {
       setObjectUrl(previewUrl);
       setLoadError(null);
       return;
@@ -462,7 +469,7 @@ export function AttachmentPreviewModal({
     let createdUrl: string | null = null;
     (async () => {
       try {
-        const url = await fetchAttachmentObjectUrl(attachment.attachmentId);
+        const url = await fetchAttachmentObjectUrl(attachmentId);
         if (cancelled) {
           URL.revokeObjectURL(url);
           return;
@@ -479,7 +486,7 @@ export function AttachmentPreviewModal({
       // Only revoke if we fetched fresh — don't kill the cached image URL.
       if (createdUrl && createdUrl !== previewUrl) URL.revokeObjectURL(createdUrl);
     };
-  }, [attachment, previewUrl]);
+  }, [attachmentId, isImageDep, previewUrl]);
 
   if (!attachment) return null;
 
@@ -555,18 +562,18 @@ export function AttachmentPreviewModal({
         ) : !objectUrl ? (
           <div className="py-12 text-center text-[13px] text-ink-3">Loading preview…</div>
         ) : isImage ? (
-          <div className="flex max-h-[70vh] items-center justify-center overflow-auto rounded-[10px] bg-paper-2 p-2">
+          <div className="flex max-h-[44vh] items-center justify-center overflow-auto rounded-[10px] bg-paper-2 p-2">
             <img
               src={objectUrl}
               alt={attachment.originalFileName}
-              className="max-h-[68vh] max-w-full object-contain"
+              className="max-h-[41vh] max-w-full object-contain"
             />
           </div>
         ) : isPdf ? (
           <iframe
             src={objectUrl}
             title={attachment.originalFileName}
-            className="h-[70vh] w-full rounded-[10px] border border-rule"
+            className="h-[43vh] w-full rounded-[10px] border border-rule"
           />
         ) : (
           <div className="rounded-[10px] bg-paper-2 px-3 py-12 text-center text-[13px] text-ink-3">
@@ -584,7 +591,7 @@ export function AttachmentPreviewModal({
             id="att-notes"
             value={notesDraft}
             onChange={(e) => setNotesDraft(e.target.value.slice(0, NOTES_MAX))}
-            placeholder="Add a short caption — e.g. 'CBC dated 12-May, slightly elevated WBC'."
+            placeholder="Add a note…"
             dir="auto"
             rows={3}
             disabled={saveNotes.isPending}
