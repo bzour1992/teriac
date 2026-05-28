@@ -1,0 +1,26 @@
+{
+  "name": "teriac",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Teriac EHR & Clinic Management System — multi-tenant for MENA outpatient centers",
+  "packageManager": "pnpm@11.1.2",
+  "engines": {
+    "node": ">=20.0.0",
+    "pnpm": ">=10.0.0"
+  },
+  "scripts": {
+    "dev": "turbo run dev --parallel",
+    "build": "turbo run build",
+    "lint": "turbo run lint",
+    "typecheck": "turbo run typecheck",
+    "test": "turbo run test",
+    "db:introspect": "pnpm --filter @teriac/api db:introspect",
+    "db:generate": "pnpm --filter @teriac/api db:generate",
+    "db:studio": "pnpm --filter @teriac/api db:studio"
+  },
+  "devDependencies": {
+    "turbo": "^2.3.3",
+    "typescript": "~5.6.3",
+    "prettier": "^3.4.2"
+  }
+}

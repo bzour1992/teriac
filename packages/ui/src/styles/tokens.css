@@ -1,0 +1,89 @@
+/* =============================================================================
+ * Teriac design tokens. Mirrors docs/design-system.md §11.1 exactly.
+ * Do not introduce new colors or radii — extend tokens here first.
+ * ============================================================================= */
+
+:root {
+  /* Brand */
+  --primary-50:  #f0f5fe;
+  --primary-100: #e2ebfe;
+  --primary-200: #c4d6fe;
+  --primary-300: #95b6fd;
+  --primary-400: #4f85fc;
+  --primary-500: #155dfc;
+  --primary-600: #1251dd;
+  --primary-700: #0f42b5;
+  --primary-800: #0b338a;
+  --primary-900: #072058;
+
+  /* Neutrals — light */
+  --paper:   #f7f9fc;
+  --paper-2: #eef2f8;
+  --paper-3: #e4eaf3;
+  --card:    #ffffff;
+  --card-2:  #fafbfd;
+  --ink:     #0b1220;
+  --ink-2:   #283344;
+  --ink-3:   #5b6679;
+  --ink-4:   #8b95a8;
+  --rule:    #dfe5ee;
+  --rule-2:  #c8d0de;
+
+  /* Semantic */
+  --vital-fg: #0f7a4d;  --vital-bg: #dcf2e4;
+  --warn-fg:  #a76a0c;  --warn-bg:  #fbedcf;
+  --alert-fg: #b3261e;  --alert-bg: #fadcd9;
+  --info-fg:  #155dfc;  --info-bg:  #e2ebfe;
+
+  /* Type */
+  --serif:   "Fraunces", Georgia, serif;
+  --sans:    "Inter", system-ui, sans-serif;
+  --sans-ar: "IBM Plex Sans Arabic", "Inter", system-ui, sans-serif;
+  --mono:    "JetBrains Mono", ui-monospace, monospace;
+
+  /* Radius */
+  --radius-sm: 6px;
+  --radius:    10px;
+  --radius-lg: 14px;
+  --radius-xl: 20px;
+
+  /* Shadow */
+  --shadow-1: 0 1px 0 rgba(11, 18, 32, .04), 0 1px 2px rgba(11, 18, 32, .04);
+  --shadow-2: 0 1px 0 rgba(11, 18, 32, .05), 0 8px 24px -12px rgba(11, 18, 32, .12);
+  --shadow-3: 0 4px 8px -2px rgba(11, 18, 32, .08), 0 24px 48px -16px rgba(11, 18, 32, .18);
+
+  /* Layout */
+  --sidebar-w: 248px;
+  --sidebar-w-collapsed: 68px;
+  --topbar-h: 64px;
+}
+
+html[lang="ar"] {
+  --sans: var(--sans-ar);
+}
+
+html[data-theme="dark"] {
+  --paper:   #0b1220;
+  --paper-2: #101a2d;
+  --paper-3: #172339;
+  --card:    #101a2d;
+  --card-2:  #152038;
+  --ink:     #f3f6fb;
+  --ink-2:   #d1d8e4;
+  --ink-3:   #8b95a8;
+  --ink-4:   #5b6679;
+  --rule:    #1f2a40;
+  --rule-2:  #2a374f;
+  --vital-bg: #11261c;
+  --warn-bg:  #2a200f;
+  --alert-bg: #2c1816;
+  --info-bg:  #0b1d3d;
+}
+
+/* Tabular numerals helper — apply on data cells, KPI values, timestamps. */
+.tnum,
+td,
+.kpi-value,
+.num {
+  font-variant-numeric: tabular-nums;
+}

@@ -1,0 +1,1952 @@
+-- Current sql file was generated after introspecting the database
+-- If you want to run this migration please uncomment this code before executing migrations
+/*
+CREATE TABLE `aftervisitrecommendations` (
+	`Recommended` longtext NOT NULL,
+	`RequestedByUserId` char(36) NOT NULL,
+	`RequestDate` datetime(3) NOT NULL,
+	`IsDone` tinyint(1) NOT NULL,
+	`ProcessedDate` datetime(3) DEFAULT 'NULL',
+	`ProcessedByUserID` char(36) DEFAULT 'NULL',
+	`AfterVisitRecommendationID` char(36) NOT NULL,
+	`PatientVisitID` char(36) NOT NULL,
+	`__sysChangeTxBsn` bigint(20) DEFAULT 'NULL',
+	`__sysInsertTxBsn` bigint(20) DEFAULT 'NULL',
+	`__sysTrackingContext` char(36) DEFAULT 'NULL'
+);
+--> statement-breakpoint
+CREATE TABLE `agebmipercentiles` (
+	`AgeInMonths` double NOT NULL,
+	`Gender` int(11) NOT NULL,
+	`ThirdPercentile` double NOT NULL,
+	`FifthPercentile` double NOT NULL,
+	`TenthPercentile` double NOT NULL,
+	`TwentyFifthPercentile` double NOT NULL,
+	`FifteethPercentile` double NOT NULL,
+	`SeventyFifthPercentile` double NOT NULL,
+	`NineteethPercentile` double NOT NULL,
+	`NintyFifthPercentile` double NOT NULL,
+	`NintySeventhPercentile` double NOT NULL,
+	`AgeBMIPercentileID` char(36) NOT NULL,
+	`__sysChangeTxBsn` bigint(20) DEFAULT 'NULL',
+	`__sysInsertTxBsn` bigint(20) DEFAULT 'NULL',
+	`__sysTrackingContext` char(36) DEFAULT 'NULL'
+);
+--> statement-breakpoint
+CREATE TABLE `agehcpercentiles` (
+	`AgeInMonths` double NOT NULL,
+	`Gender` int(11) NOT NULL,
+	`ThirdPercentile` double NOT NULL,
+	`FifthPercentile` double NOT NULL,
+	`TenthPercentile` double NOT NULL,
+	`TwentyFifthPercentile` double NOT NULL,
+	`FifteethPercentile` double NOT NULL,
+	`SeventyFifthPercentile` double NOT NULL,
+	`NineteethPercentile` double NOT NULL,
+	`NintyFifthPercentile` double NOT NULL,
+	`NintySeventhPercentile` double NOT NULL,
+	`AgeHCPercentileID` char(36) NOT NULL,
+	`__sysChangeTxBsn` bigint(20) DEFAULT 'NULL',
+	`__sysInsertTxBsn` bigint(20) DEFAULT 'NULL',
+	`__sysTrackingContext` char(36) DEFAULT 'NULL'
+);
+--> statement-breakpoint
+CREATE TABLE `ageheightpercentiles` (
+	`AgeInMonths` double NOT NULL,
+	`Gender` int(11) NOT NULL,
+	`ThirdPercentile` double NOT NULL,
+	`FifthPercentile` double NOT NULL,
+	`TenthPercentile` double NOT NULL,
+	`TwentyFifthPercentile` double NOT NULL,
+	`FifteethPercentile` double NOT NULL,
+	`SeventyFifthPercentile` double NOT NULL,
+	`NineteethPercentile` double NOT NULL,
+	`NintyFifthPercentile` double NOT NULL,
+	`NintySeventhPercentile` double NOT NULL,
+	`AgeHeightPercentileID` char(36) NOT NULL,
+	`__sysChangeTxBsn` bigint(20) DEFAULT 'NULL',
+	`__sysInsertTxBsn` bigint(20) DEFAULT 'NULL',
+	`__sysTrackingContext` char(36) DEFAULT 'NULL'
+);
+--> statement-breakpoint
+CREATE TABLE `ageweightpercentiles` (
+	`AgeInMonths` double NOT NULL,
+	`Gender` int(11) NOT NULL,
+	`ThirdPercentile` double NOT NULL,
+	`FifthPercentile` double NOT NULL,
+	`TenthPercentile` double NOT NULL,
+	`TwentyFifthPercentile` double NOT NULL,
+	`FifteethPercentile` double NOT NULL,
+	`SeventyFifthPercentile` double NOT NULL,
+	`NineteethPercentile` double NOT NULL,
+	`NintyFifthPercentile` double NOT NULL,
+	`NintySeventhPercentile` double NOT NULL,
+	`AgeWeightPercentileID` char(36) NOT NULL,
+	`__sysChangeTxBsn` bigint(20) DEFAULT 'NULL',
+	`__sysInsertTxBsn` bigint(20) DEFAULT 'NULL',
+	`__sysTrackingContext` char(36) DEFAULT 'NULL'
+);
+--> statement-breakpoint
+CREATE TABLE `allergies` (
+	`Severity` int(11) DEFAULT 'NULL',
+	`LastOccurenceDate` datetime(3) DEFAULT 'NULL',
+	`Treatment` longtext DEFAULT 'NULL',
+	`Reaction` varchar(500) DEFAULT 'NULL',
+	`AllergyID` char(36) NOT NULL,
+	`MedicalConditionID` char(36) NOT NULL,
+	`PatientID` char(36) NOT NULL,
+	`__sysChangeTxBsn` bigint(20) DEFAULT 'NULL',
+	`__sysInsertTxBsn` bigint(20) DEFAULT 'NULL',
+	`__sysTrackingContext` char(36) DEFAULT 'NULL'
+);
+--> statement-breakpoint
+CREATE TABLE `bodysystemannotationimages` (
+	`Filename` varchar(255) DEFAULT 'NULL',
+	`ImageTitle` varchar(250) NOT NULL,
+	`BodySystemAnnotationImageID` char(36) NOT NULL,
+	`BodySystemID` char(36) NOT NULL,
+	`__sysChangeTxBsn` bigint(20) DEFAULT 'NULL',
+	`__sysInsertTxBsn` bigint(20) DEFAULT 'NULL',
+	`__sysTrackingContext` char(36) DEFAULT 'NULL'
+);
+--> statement-breakpoint
+CREATE TABLE `bodysystems` (
+	`BodySystemName` varchar(50) NOT NULL,
+	`BodySystemDescription` varchar(500) DEFAULT 'NULL',
+	`SmallImageFileName` varchar(255) DEFAULT 'NULL',
+	`MediumImageFilename` varchar(255) DEFAULT 'NULL',
+	`LargeImageFilename` varchar(255) DEFAULT 'NULL',
+	`BodySystemID` char(36) NOT NULL,
+	`BodySystemOrder` int(11) NOT NULL,
+	`__sysChangeTxBsn` bigint(20) DEFAULT 'NULL',
+	`__sysInsertTxBsn` bigint(20) DEFAULT 'NULL',
+	`__sysTrackingContext` char(36) DEFAULT 'NULL'
+);
+--> statement-breakpoint
+CREATE TABLE `bodysystemschecklistitems` (
+	`BodySystemChecklistItemID` bigint(20) AUTO_INCREMENT NOT NULL,
+	`BodySystemChecklistItemName` varchar(500) NOT NULL,
+	`AdditionalQuestions` longtext DEFAULT 'NULL',
+	`BodySystemID` char(36) NOT NULL,
+	`OrderWithinSystem` int(11) NOT NULL,
+	`__sysChangeTxBsn` bigint(20) DEFAULT 'NULL',
+	`__sysInsertTxBsn` bigint(20) DEFAULT 'NULL',
+	`__sysTrackingContext` char(36) DEFAULT 'NULL'
+);
+--> statement-breakpoint
+CREATE TABLE `checklistitems` (
+	`ChecklistItemName` varchar(150) NOT NULL,
+	`Description` longtext DEFAULT 'NULL',
+	`ImageFile` varchar(255) DEFAULT 'NULL',
+	`ChecklistItemID` char(36) NOT NULL,
+	`__sysChangeTxBsn` bigint(20) DEFAULT 'NULL',
+	`__sysInsertTxBsn` bigint(20) DEFAULT 'NULL',
+	`__sysTrackingContext` char(36) DEFAULT 'NULL'
+);
+--> statement-breakpoint
+CREATE TABLE `chronicdiseases` (
+	`YearDiagnosed` int(11) DEFAULT 'NULL',
+	`MonthDiagnosed` int(11) DEFAULT 'NULL',
+	`ChronicDiseaseID` char(36) NOT NULL,
+	`MedicalConditionID` char(36) NOT NULL,
+	`PatientID` char(36) NOT NULL,
+	`Notes` varchar(500) DEFAULT 'NULL',
+	`__sysChangeTxBsn` bigint(20) DEFAULT 'NULL',
+	`__sysInsertTxBsn` bigint(20) DEFAULT 'NULL',
+	`__sysTrackingContext` char(36) DEFAULT 'NULL'
+);
+--> statement-breakpoint
+CREATE TABLE `cities` (
+	`CityName` varchar(50) NOT NULL,
+	`CityID` char(36) NOT NULL,
+	`CountryID` char(36) NOT NULL,
+	`__sysChangeTxBsn` bigint(20) DEFAULT 'NULL',
+	`__sysInsertTxBsn` bigint(20) DEFAULT 'NULL',
+	`__sysTrackingContext` char(36) DEFAULT 'NULL'
+);
+--> statement-breakpoint
+CREATE TABLE `countries` (
+	`CountryName` varchar(50) NOT NULL,
+	`CountryCodeISO3` varchar(6) DEFAULT 'NULL',
+	`CountryCodeISO2` varchar(6) DEFAULT 'NULL',
+	`PhoneCode` varchar(8) DEFAULT 'NULL',
+	`NationalityText` varchar(250) DEFAULT 'NULL',
+	`CountryID` char(36) NOT NULL,
+	`__sysChangeTxBsn` bigint(20) DEFAULT 'NULL',
+	`__sysInsertTxBsn` bigint(20) DEFAULT 'NULL',
+	`__sysTrackingContext` char(36) DEFAULT 'NULL'
+);
+--> statement-breakpoint
+CREATE TABLE `cptcodes` (
+	`CPTCodeID` char(36) NOT NULL,
+	`CPT_CODE` varchar(9) DEFAULT 'NULL',
+	`SHORT_DESCRIPTION` varchar(500) DEFAULT 'NULL',
+	`LONG_DESCRIPTION` varchar(500) DEFAULT 'NULL',
+	`FULL_DESCRIPTION` varchar(500) DEFAULT 'NULL',
+	`SGroup` varchar(50) DEFAULT 'NULL',
+	`SpecialtyID` char(36) DEFAULT 'NULL',
+	`__sysChangeTxBsn` bigint(20) DEFAULT 'NULL',
+	`__sysInsertTxBsn` bigint(20) DEFAULT 'NULL',
+	`__sysTrackingContext` char(36) DEFAULT 'NULL'
+);
+--> statement-breakpoint
+CREATE TABLE `denverscreeningtestitems` (
+	`ItemID` char(36) NOT NULL,
+	`ItemName` varchar(250) NOT NULL,
+	`ItemCategory` int(11) NOT NULL,
+	`V25` double NOT NULL,
+	`V50` double NOT NULL,
+	`V75` double NOT NULL,
+	`V90` double NOT NULL,
+	`ItemType` varchar(50) DEFAULT 'NULL',
+	`ValueOrder` int(11) NOT NULL,
+	`__sysChangeTxBsn` bigint(20) DEFAULT 'NULL',
+	`__sysInsertTxBsn` bigint(20) DEFAULT 'NULL',
+	`__sysTrackingContext` char(36) DEFAULT 'NULL'
+);
+--> statement-breakpoint
+CREATE TABLE `diagnostictests` (
+	`DiagnosticTestName` varchar(500) NOT NULL,
+	`Description` longtext DEFAULT 'NULL',
+	`DiagnosticTestType` int(11) NOT NULL,
+	`IsVerified` tinyint(1) NOT NULL,
+	`AddedBy` varchar(250) NOT NULL,
+	`DateAdded` datetime(3) DEFAULT 'NULL',
+	`DiagnosticTestID` char(36) NOT NULL,
+	`__sysChangeTxBsn` bigint(20) DEFAULT 'NULL',
+	`__sysInsertTxBsn` bigint(20) DEFAULT 'NULL',
+	`__sysTrackingContext` char(36) DEFAULT 'NULL'
+);
+--> statement-breakpoint
+CREATE TABLE `hcenterfinancaltransactions` (
+	`Details` varchar(500) NOT NULL,
+	`AddUserID` char(36) NOT NULL,
+	`AddDate` datetime(3) NOT NULL,
+	`UpdateUserID` char(36) DEFAULT 'NULL',
+	`UpdateDate` datetime(3) DEFAULT 'NULL',
+	`Amount` double NOT NULL,
+	`Notes` longtext DEFAULT 'NULL',
+	`TransactionType` int(11) NOT NULL,
+	`HCenterFinancalTransactionID` char(36) NOT NULL,
+	`PatientBillingRecordID` char(36) DEFAULT 'NULL',
+	`PatientInsuranceDetailID` char(36) DEFAULT 'NULL',
+	`TransactionCategoryID` char(36) DEFAULT 'NULL',
+	`WalletID` char(36) DEFAULT 'NULL',
+	`SourceWallet` char(36) DEFAULT 'NULL',
+	`HCenterID` char(36) NOT NULL,
+	`OwnerUserID` char(36) DEFAULT 'NULL',
+	`IFNumber` varchar(100) DEFAULT 'NULL',
+	`EmployeeName` varchar(250) DEFAULT 'NULL',
+	`EmployeeNumber` varchar(50) DEFAULT 'NULL',
+	`EmployeeUserID` char(36) DEFAULT 'NULL',
+	`PatientID` char(36) DEFAULT 'NULL',
+	`PatientInvoiceID` char(36) DEFAULT 'NULL',
+	`Discount` double NOT NULL,
+	`CreationDate` datetime(3) DEFAULT 'NULL',
+	`HCenterEmployeeID` char(36) DEFAULT 'NULL',
+	`OriginalAmount` double DEFAULT 'NULL',
+	`InventoryItemID` char(36) DEFAULT 'NULL',
+	`__sysChangeTxBsn` bigint(20) DEFAULT 'NULL',
+	`__sysInsertTxBsn` bigint(20) DEFAULT 'NULL',
+	`__sysTrackingContext` char(36) DEFAULT 'NULL'
+);
+--> statement-breakpoint
+CREATE TABLE `hcenterpage` (
+	`FriendlyUrl` varchar(50) NOT NULL,
+	`HCenterDisplayNameEn` varchar(250) NOT NULL,
+	`HCenterDisplayNameOther` varchar(250) DEFAULT 'NULL',
+	`Description` longtext DEFAULT 'NULL',
+	`HomePagePhotoUrl` varchar(250) DEFAULT 'NULL',
+	`Address` longtext DEFAULT 'NULL',
+	`FeedbackEmail` varchar(250) DEFAULT 'NULL',
+	`HCenterID` char(36) NOT NULL,
+	`HomePageCoverPhotoUrl` varchar(250) DEFAULT 'NULL',
+	`__sysChangeTxBsn` bigint(20) DEFAULT 'NULL',
+	`__sysInsertTxBsn` bigint(20) DEFAULT 'NULL',
+	`__sysTrackingContext` char(36) DEFAULT 'NULL'
+);
+--> statement-breakpoint
+CREATE TABLE `hcenters` (
+	`HCenterName` varchar(500) NOT NULL,
+	`HCenterNameRep` varchar(500) DEFAULT 'NULL',
+	`IsOneDoctor` tinyint(1) NOT NULL,
+	`Email` varchar(250) DEFAULT 'NULL',
+	`Phone` varchar(250) DEFAULT 'NULL',
+	`IsActive` tinyint(1) NOT NULL,
+	`SubscriptionType` int(11) NOT NULL,
+	`HCenterID` char(36) NOT NULL,
+	`CityID` char(36) DEFAULT 'NULL',
+	`CountryID` char(36) NOT NULL,
+	`ReportsLogo` varchar(255) DEFAULT 'NULL',
+	`ReportsWorkingTimes` varchar(500) DEFAULT 'NULL',
+	`ReportAddress` varchar(500) DEFAULT 'NULL',
+	`SupportStartDate` datetime(3) NOT NULL,
+	`LastRenewalDate` datetime(3) DEFAULT 'NULL',
+	`HCenterInitials` varchar(2) DEFAULT 'NULL',
+	`eClaimLinkID` varchar(25) DEFAULT 'NULL',
+	`ClinicManager` varchar(400) DEFAULT 'NULL',
+	`ClinicManagerEmail` varchar(400) DEFAULT 'NULL',
+	`ClinicManagerMob` varchar(50) DEFAULT 'NULL',
+	`ClinicManagerOfficePhone` varchar(50) DEFAULT 'NULL',
+	`__sysChangeTxBsn` bigint(20) DEFAULT 'NULL',
+	`__sysInsertTxBsn` bigint(20) DEFAULT 'NULL',
+	`__sysTrackingContext` char(36) DEFAULT 'NULL'
+);
+--> statement-breakpoint
+CREATE TABLE `hcenterscheduleitems` (
+	`Name` longtext DEFAULT 'NULL',
+	`ContactPhone` varchar(50) DEFAULT 'NULL',
+	`ScheduledInDate` datetime(3) NOT NULL,
+	`ScheduledToDate` datetime(3) NOT NULL,
+	`Doctor` char(36) DEFAULT 'NULL',
+	`Notes` longtext DEFAULT 'NULL',
+	`IsVerified` tinyint(1) NOT NULL,
+	`IsDone` tinyint(1) NOT NULL,
+	`AddSchedulingOfficer` char(36) NOT NULL,
+	`AddedDate` datetime(3) NOT NULL,
+	`UpdatedDate` datetime(3) DEFAULT 'NULL',
+	`ContactEmail` varchar(250) DEFAULT 'NULL',
+	`UpdateSchedulingOfficer` char(36) DEFAULT 'NULL',
+	`LabelID` int(11) NOT NULL,
+	`StatusID` int(11) NOT NULL,
+	`HCenterScheduleItemID` char(36) NOT NULL,
+	`HCenterID` char(36) NOT NULL,
+	`PatientID` char(36) DEFAULT 'NULL',
+	`PatientVisitID` char(36) DEFAULT 'NULL',
+	`PVRevisitID` char(36) DEFAULT 'NULL',
+	`Location` varchar(250) DEFAULT 'NULL',
+	`ByDoctor` tinyint(1) NOT NULL,
+	`IsSurgery` tinyint(1) NOT NULL,
+	`NotForPatient` tinyint(1) NOT NULL,
+	`ProcedureHistoryID` char(36) DEFAULT 'NULL',
+	`PVPlanProceduresCPTID` char(36) DEFAULT 'NULL',
+	`__sysChangeTxBsn` bigint(20) DEFAULT 'NULL',
+	`__sysInsertTxBsn` bigint(20) DEFAULT 'NULL',
+	`__sysTrackingContext` char(36) DEFAULT 'NULL'
+);
+--> statement-breakpoint
+CREATE TABLE `hcenterspecialities` (
+	`DefaultPayment` double DEFAULT 'NULL',
+	`ShowOnProfile` tinyint(1) NOT NULL,
+	`HCenterSpecialityID` char(36) NOT NULL,
+	`HCenterID` char(36) NOT NULL,
+	`SpecialityID` char(36) NOT NULL,
+	`__sysChangeTxBsn` bigint(20) DEFAULT 'NULL',
+	`__sysInsertTxBsn` bigint(20) DEFAULT 'NULL',
+	`__sysTrackingContext` char(36) DEFAULT 'NULL'
+);
+--> statement-breakpoint
+CREATE TABLE `hcentersystemsettings` (
+	`IsHeightWeightRequired` tinyint(1) NOT NULL,
+	`IsPatientAddressRequired` int(11) NOT NULL,
+	`IsOrganizationOccupationRequired` tinyint(1) NOT NULL,
+	`IsGeneralAppearanceRequired` int(11) NOT NULL,
+	`IsHumanRaceRequired` tinyint(1) NOT NULL,
+	`IsMaritalStatusRequired` tinyint(1) NOT NULL,
+	`IsPatientEnglishNameRequired` tinyint(1) NOT NULL,
+	`IsPatientArabicNameRequired` tinyint(1) NOT NULL,
+	`IsPatientChecklistRequired` tinyint(1) NOT NULL,
+	`IsPatientFamilyHistoryRequired` int(11) NOT NULL,
+	`IsSystemsReviewRequired` tinyint(1) NOT NULL,
+	`IsSystemsPhysicalExamRequired` tinyint(1) NOT NULL,
+	`AreRoutinesPatternsRequired` int(11) NOT NULL,
+	`AreHereditaryDiseasesRequired` tinyint(1) NOT NULL,
+	`AreAllergiesRequired` tinyint(1) NOT NULL,
+	`AreChronicDiseasesRequired` tinyint(1) NOT NULL,
+	`DefaultPayment` int(11) NOT NULL,
+	`PreferredCurrency` varchar(50) DEFAULT 'NULL',
+	`HCenterID` char(36) NOT NULL,
+	`CanDoctorsEditPatientDemographicInformation` tinyint(1) NOT NULL,
+	`OnlyVisitDoctorCanEditVisitRecords` tinyint(1) NOT NULL,
+	`PreventEditingPatientVisitWhenStatusIsResolvedOrFailed` tinyint(1) NOT NULL,
+	`OnlyCenterAdminIsAllowedToDeleteAttachments` tinyint(1) NOT NULL,
+	`NumberOfOperationRooms` int(11) NOT NULL,
+	`UseAdminInsuranceCompanies` tinyint(1) NOT NULL,
+	`IsLockedData` tinyint(1) NOT NULL,
+	`__sysChangeTxBsn` bigint(20) DEFAULT 'NULL',
+	`__sysInsertTxBsn` bigint(20) DEFAULT 'NULL',
+	`__sysTrackingContext` char(36) DEFAULT 'NULL'
+);
+--> statement-breakpoint
+CREATE TABLE `hcenteruserfavcptcodes` (
+	`HCenterUserFavCPTCodeID` char(36) NOT NULL,
+	`CPTCodeID` char(36) NOT NULL,
+	`HCenterUserID` char(36) NOT NULL,
+	`__sysChangeTxBsn` bigint(20) DEFAULT 'NULL',
+	`__sysInsertTxBsn` bigint(20) DEFAULT 'NULL',
+	`__sysTrackingContext` char(36) DEFAULT 'NULL'
+);
+--> statement-breakpoint
+CREATE TABLE `hcenterusers` (
+	`UserId` char(36) NOT NULL,
+	`UserName` varchar(256) DEFAULT 'NULL',
+	`ConfirmationCode` varchar(50) DEFAULT 'NULL',
+	`UserType` int(11) NOT NULL,
+	`IsAdmin` tinyint(1) NOT NULL,
+	`FirstName` varchar(50) NOT NULL,
+	`SecondName` varchar(50) DEFAULT 'NULL',
+	`ThirdName` varchar(50) DEFAULT 'NULL',
+	`LastName` varchar(50) DEFAULT 'NULL',
+	`Position` varchar(50) DEFAULT 'NULL',
+	`Description` longtext DEFAULT 'NULL',
+	`PhotoFilename` varchar(250) DEFAULT 'NULL',
+	`DefaultPayment` double DEFAULT 'NULL',
+	`SchedulingOfficer` char(36) DEFAULT 'NULL',
+	`IsPublic` tinyint(1) NOT NULL,
+	`IsActive` tinyint(1) NOT NULL,
+	`HCenterID` char(36) NOT NULL,
+	`HCenterSpecialityID` char(36) DEFAULT 'NULL',
+	`ReportUsername` varchar(50) DEFAULT 'NULL',
+	`ReportSpeciality` varchar(250) DEFAULT 'NULL',
+	`ReportOther1` varchar(250) DEFAULT 'NULL',
+	`ReportOthers2` varchar(250) DEFAULT 'NULL',
+	`ReportUsernameAr` varchar(50) DEFAULT 'NULL',
+	`ReportSpecialityAr` varchar(250) DEFAULT 'NULL',
+	`ReportOther1Ar` varchar(250) DEFAULT 'NULL',
+	`ReportOthers2Ar` varchar(250) DEFAULT 'NULL',
+	`eClaimLinkID` varchar(25) DEFAULT 'NULL',
+	`eCliamProfessionalName` varchar(250) DEFAULT 'NULL',
+	`IsFinancialAdmin` tinyint(1) NOT NULL,
+	`IsOptometrist` tinyint(1) NOT NULL,
+	`IsOperationsRoomAppointmentsManager` tinyint(1) NOT NULL,
+	`__sysChangeTxBsn` bigint(20) DEFAULT 'NULL',
+	`__sysInsertTxBsn` bigint(20) DEFAULT 'NULL',
+	`__sysTrackingContext` char(36) DEFAULT 'NULL'
+);
+--> statement-breakpoint
+CREATE TABLE `hcpcs` (
+	`HCPCID` char(36) NOT NULL,
+	`HCPCCode` varchar(10) NOT NULL,
+	`HCPCShortDescription` varchar(500) NOT NULL,
+	`HCPCLongDescription` varchar(500) NOT NULL,
+	`__sysChangeTxBsn` bigint(20) DEFAULT 'NULL',
+	`__sysInsertTxBsn` bigint(20) DEFAULT 'NULL',
+	`__sysTrackingContext` char(36) DEFAULT 'NULL'
+);
+--> statement-breakpoint
+CREATE TABLE `hcupvqsections` (
+	`UserId` char(36) NOT NULL,
+	`VitalSigns` tinyint(1) NOT NULL,
+	`StandardMeasurements` tinyint(1) NOT NULL,
+	`Immunization` tinyint(1) NOT NULL,
+	`HabitDetails` tinyint(1) NOT NULL,
+	`FDHistory` tinyint(1) NOT NULL,
+	`PatientMedications` tinyint(1) NOT NULL,
+	`HistoryOfIllness` tinyint(1) NOT NULL,
+	`Allergies` tinyint(1) NOT NULL,
+	`GeneralAppearance` tinyint(1) NOT NULL,
+	`GeneralReview` tinyint(1) NOT NULL,
+	`PhysicalExamination` tinyint(1) NOT NULL,
+	`Diagnostics` tinyint(1) NOT NULL,
+	`ProceduresPlan` tinyint(1) NOT NULL,
+	`VisitAttachments` tinyint(1) NOT NULL,
+	`DefaultBodySystem` varchar(250) DEFAULT 'NULL',
+	`ChronicDiseases` tinyint(1) NOT NULL,
+	`ProceduresHistory` tinyint(1) NOT NULL,
+	`SystemReviews` tinyint(1) NOT NULL,
+	`__sysChangeTxBsn` bigint(20) DEFAULT 'NULL',
+	`__sysInsertTxBsn` bigint(20) DEFAULT 'NULL',
+	`__sysTrackingContext` char(36) DEFAULT 'NULL'
+);
+--> statement-breakpoint
+CREATE TABLE `hcuserspermissions` (
+	`UserID` char(36) NOT NULL,
+	`PermissionID` bigint(20) NOT NULL,
+	`__sysChangeTxBsn` bigint(20) DEFAULT 'NULL',
+	`__sysInsertTxBsn` bigint(20) DEFAULT 'NULL',
+	`__sysTrackingContext` char(36) DEFAULT 'NULL'
+);
+--> statement-breakpoint
+CREATE TABLE `humanraces` (
+	`RaceName` varchar(50) NOT NULL,
+	`HumanRaceID` char(36) NOT NULL,
+	`__sysChangeTxBsn` bigint(20) DEFAULT 'NULL',
+	`__sysInsertTxBsn` bigint(20) DEFAULT 'NULL',
+	`__sysTrackingContext` char(36) DEFAULT 'NULL'
+);
+--> statement-breakpoint
+CREATE TABLE `icd10-cm2012` (
+	`ICD10ID` bigint(20) AUTO_INCREMENT NOT NULL,
+	`Code` varchar(10) NOT NULL,
+	`ShortDesc` varchar(500) DEFAULT 'NULL',
+	`LongDesc` longtext DEFAULT 'NULL',
+	`Type` int(11) NOT NULL,
+	`__sysChangeTxBsn` bigint(20) DEFAULT 'NULL',
+	`__sysInsertTxBsn` bigint(20) DEFAULT 'NULL',
+	`__sysTrackingContext` char(36) DEFAULT 'NULL'
+);
+--> statement-breakpoint
+CREATE TABLE `immunizationsvaccines` (
+	`ImmunizationsVaccineName` varchar(250) NOT NULL,
+	`ImmunizationsVaccineID` char(36) NOT NULL,
+	`IsVerified` tinyint(1) NOT NULL,
+	`AddedBy` varchar(250) NOT NULL,
+	`DateAdded` datetime(3) DEFAULT 'NULL',
+	`__sysChangeTxBsn` bigint(20) DEFAULT 'NULL',
+	`__sysInsertTxBsn` bigint(20) DEFAULT 'NULL',
+	`__sysTrackingContext` char(36) DEFAULT 'NULL'
+);
+--> statement-breakpoint
+CREATE TABLE `maritalstatuses` (
+	`MaritalStatus` varchar(50) NOT NULL,
+	`MaritalStatusID` char(36) NOT NULL,
+	`__sysChangeTxBsn` bigint(20) DEFAULT 'NULL',
+	`__sysInsertTxBsn` bigint(20) DEFAULT 'NULL',
+	`__sysTrackingContext` char(36) DEFAULT 'NULL'
+);
+--> statement-breakpoint
+CREATE TABLE `medicalconditions` (
+	`MedicalConditionName` varchar(250) NOT NULL,
+	`Description` longtext DEFAULT 'NULL',
+	`IsAllergy` tinyint(1) NOT NULL,
+	`IsHereditary` tinyint(1) NOT NULL,
+	`IsChronic` tinyint(1) NOT NULL,
+	`CategoryText` varchar(50) DEFAULT 'NULL',
+	`IsVerified` tinyint(1) NOT NULL,
+	`AddedBy` varchar(250) NOT NULL,
+	`SearchKeywords` longtext DEFAULT 'NULL',
+	`DateAdded` datetime(3) DEFAULT 'NULL',
+	`MedicalConditionID` char(36) NOT NULL,
+	`__sysChangeTxBsn` bigint(20) DEFAULT 'NULL',
+	`__sysInsertTxBsn` bigint(20) DEFAULT 'NULL',
+	`__sysTrackingContext` char(36) DEFAULT 'NULL'
+);
+--> statement-breakpoint
+CREATE TABLE `medicalprocedures` (
+	`MedicalProcedureName` varchar(250) NOT NULL,
+	`MedicalProcedureDescription` varchar(500) DEFAULT 'NULL',
+	`IsVerified` tinyint(1) NOT NULL,
+	`AddedBy` varchar(250) NOT NULL,
+	`DateAdded` datetime(3) DEFAULT 'NULL',
+	`MedicalProcedureID` char(36) NOT NULL,
+	`__sysChangeTxBsn` bigint(20) DEFAULT 'NULL',
+	`__sysInsertTxBsn` bigint(20) DEFAULT 'NULL',
+	`__sysTrackingContext` char(36) DEFAULT 'NULL'
+);
+--> statement-breakpoint
+CREATE TABLE `medicines` (
+	`TradeName` varchar(500) DEFAULT 'NULL',
+	`scientificName` varchar(500) DEFAULT 'NULL',
+	`Description` longtext DEFAULT 'NULL',
+	`IsVerified` tinyint(1) NOT NULL,
+	`AddedBy` varchar(250) NOT NULL,
+	`DateAdded` datetime(3) DEFAULT 'NULL',
+	`MedicineID` char(36) NOT NULL,
+	`CityID` char(36) DEFAULT 'NULL',
+	`CountryID` char(36) NOT NULL,
+	`__sysChangeTxBsn` bigint(20) DEFAULT 'NULL',
+	`__sysInsertTxBsn` bigint(20) DEFAULT 'NULL',
+	`__sysTrackingContext` char(36) DEFAULT 'NULL'
+);
+--> statement-breakpoint
+CREATE TABLE `modalities` (
+	`ModalityID` char(36) NOT NULL,
+	`ModalityName` varchar(500) NOT NULL,
+	`ModalityType` int(11) NOT NULL,
+	`Description` varchar(500) DEFAULT 'NULL',
+	`__sysChangeTxBsn` bigint(20) DEFAULT 'NULL',
+	`__sysInsertTxBsn` bigint(20) DEFAULT 'NULL',
+	`__sysTrackingContext` char(36) DEFAULT 'NULL'
+);
+--> statement-breakpoint
+CREATE TABLE `patientadditionalinfo` (
+	`Occupation` varchar(250) DEFAULT 'NULL',
+	`DailyRoutine` longtext DEFAULT 'NULL',
+	`DietaryPatterns` longtext DEFAULT 'NULL',
+	`SleepPatterns` longtext DEFAULT 'NULL',
+	`ExercisePatterns` longtext DEFAULT 'NULL',
+	`POBox` varchar(15) DEFAULT 'NULL',
+	`ZipCode` varchar(10) DEFAULT 'NULL',
+	`Organization` varchar(250) DEFAULT 'NULL',
+	`LegalAuthenticator` varchar(50) DEFAULT 'NULL',
+	`AuthenticationDate` datetime(3) DEFAULT 'NULL',
+	`Transcriptionist` varchar(50) DEFAULT 'NULL',
+	`TranscriptionDate` datetime(3) DEFAULT 'NULL',
+	`HomeEnvironment` varchar(400) DEFAULT 'NULL',
+	`PatientID` char(36) NOT NULL,
+	`__sysChangeTxBsn` bigint(20) DEFAULT 'NULL',
+	`__sysInsertTxBsn` bigint(20) DEFAULT 'NULL',
+	`__sysTrackingContext` char(36) DEFAULT 'NULL'
+);
+--> statement-breakpoint
+CREATE TABLE `patientantenatalhx` (
+	`PatientID` char(36) NOT NULL,
+	`MotherMentalHealth` int(11) NOT NULL,
+	`AgeAtPregnancy` int(11) DEFAULT 'NULL',
+	`ABOBloodGroupMother` int(11) NOT NULL,
+	`RHTypingMother` int(11) NOT NULL,
+	`RadiationExposure` tinyint(1) NOT NULL,
+	`AntenatalCareVisitFreq` int(11) NOT NULL,
+	`TORCH` tinyint(1) NOT NULL,
+	`TORCHComments` varchar(500) DEFAULT 'NULL',
+	`GestationalDiabetes` tinyint(1) NOT NULL,
+	`MaternalHypertension` tinyint(1) NOT NULL,
+	`Fever` tinyint(1) NOT NULL,
+	`Rash` tinyint(1) NOT NULL,
+	`RadiationExposureType` varchar(500) DEFAULT 'NULL',
+	`RadiationExposureTime` int(11) NOT NULL,
+	`RadiationExposureFreq` varchar(250) DEFAULT 'NULL',
+	`__sysChangeTxBsn` bigint(20) DEFAULT 'NULL',
+	`__sysInsertTxBsn` bigint(20) DEFAULT 'NULL',
+	`__sysTrackingContext` char(36) DEFAULT 'NULL'
+);
+--> statement-breakpoint
+CREATE TABLE `patientarabicinfo` (
+	`FirstNameAr` varchar(50) DEFAULT 'NULL',
+	`SecondNameAr` varchar(50) DEFAULT 'NULL',
+	`ThirdNameAr` varchar(50) DEFAULT 'NULL',
+	`LastNameAr` varchar(50) DEFAULT 'NULL',
+	`PatientID` char(36) NOT NULL,
+	`__sysChangeTxBsn` bigint(20) DEFAULT 'NULL',
+	`__sysInsertTxBsn` bigint(20) DEFAULT 'NULL',
+	`__sysTrackingContext` char(36) DEFAULT 'NULL'
+);
+--> statement-breakpoint
+CREATE TABLE `patientbillingrecords` (
+	`PatientVisitID` char(36) DEFAULT 'NULL',
+	`RecordDate` datetime(3) NOT NULL,
+	`Details` varchar(500) NOT NULL,
+	`Expense` double NOT NULL,
+	`DoctorID` char(36) DEFAULT 'NULL',
+	`UserID` char(36) NOT NULL,
+	`IsLocked` tinyint(1) NOT NULL,
+	`PatientBillingRecordID` char(36) NOT NULL,
+	`TransactionCategoryID` char(36) NOT NULL,
+	`IFNumber` varchar(100) DEFAULT 'NULL',
+	`__sysChangeTxBsn` bigint(20) DEFAULT 'NULL',
+	`__sysInsertTxBsn` bigint(20) DEFAULT 'NULL',
+	`__sysTrackingContext` char(36) DEFAULT 'NULL'
+);
+--> statement-breakpoint
+CREATE TABLE `patientbodysystemphysicalexam` (
+	`IsNormal` tinyint(1) NOT NULL,
+	`Notes` longtext DEFAULT 'NULL',
+	`RecordDate` datetime(3) NOT NULL,
+	`LotGUID` char(36) NOT NULL,
+	`SystemAnnotationFile` longtext DEFAULT 'NULL',
+	`FreeAnnotationFile` longtext DEFAULT 'NULL',
+	`Username` varchar(250) DEFAULT 'NULL',
+	`PatientBodySystemPhysicalExamID` char(36) NOT NULL,
+	`BodySystemID` char(36) NOT NULL,
+	`PatientID` char(36) NOT NULL,
+	`PatientVisitID` char(36) DEFAULT 'NULL',
+	`__sysChangeTxBsn` bigint(20) DEFAULT 'NULL',
+	`__sysInsertTxBsn` bigint(20) DEFAULT 'NULL',
+	`__sysTrackingContext` char(36) DEFAULT 'NULL'
+);
+--> statement-breakpoint
+CREATE TABLE `patientbodysystemreview` (
+	`IsNormal` tinyint(1) NOT NULL,
+	`Notes` longtext DEFAULT 'NULL',
+	`RecordDate` datetime(3) NOT NULL,
+	`LotGUID` char(36) NOT NULL,
+	`Username` varchar(250) DEFAULT 'NULL',
+	`PatientBodySystemReviewID` char(36) NOT NULL,
+	`BodySystemID` char(36) NOT NULL,
+	`PatientID` char(36) NOT NULL,
+	`PatientVisitID` char(36) DEFAULT 'NULL',
+	`__sysChangeTxBsn` bigint(20) DEFAULT 'NULL',
+	`__sysInsertTxBsn` bigint(20) DEFAULT 'NULL',
+	`__sysTrackingContext` char(36) DEFAULT 'NULL'
+);
+--> statement-breakpoint
+CREATE TABLE `patientchecklist` (
+	`Level` varchar(50) NOT NULL,
+	`Frequency` double NOT NULL,
+	`FrequencyUnit` varchar(50) NOT NULL,
+	`ChecklistItemID` char(36) NOT NULL,
+	`PatientID` char(36) NOT NULL,
+	`__sysChangeTxBsn` bigint(20) DEFAULT 'NULL',
+	`__sysInsertTxBsn` bigint(20) DEFAULT 'NULL',
+	`__sysTrackingContext` char(36) DEFAULT 'NULL'
+);
+--> statement-breakpoint
+CREATE TABLE `patientdiagnosticstudies` (
+	`EKGECG` tinyint(1) NOT NULL,
+	`EKGECGDate` datetime(3) DEFAULT 'NULL',
+	`EKGECGComments` varchar(500) DEFAULT 'NULL',
+	`ExerciseStressTest` tinyint(1) NOT NULL,
+	`ExerciseStressTestDate` datetime(3) DEFAULT 'NULL',
+	`ExerciseStressTestComments` varchar(500) DEFAULT 'NULL',
+	`ChestXRay` tinyint(1) NOT NULL,
+	`ChestXRayDate` datetime(3) DEFAULT 'NULL',
+	`ChestXRayComments` varchar(500) DEFAULT 'NULL',
+	`BoneDensitometry` tinyint(1) NOT NULL,
+	`BoneDensitometryYear` int(11) DEFAULT 'NULL',
+	`BoneDensitometryMonth` int(11) DEFAULT 'NULL',
+	`BoneDensitometryComments` varchar(500) DEFAULT 'NULL',
+	`Sigmoidoscopy` tinyint(1) NOT NULL,
+	`SigmoidoscopyYear` int(11) DEFAULT 'NULL',
+	`SigmoidoscopyMonth` int(11) DEFAULT 'NULL',
+	`SigmoidoscopyComments` varchar(500) DEFAULT 'NULL',
+	`Colonoscopy` tinyint(1) NOT NULL,
+	`ColonoscopyYear` int(11) DEFAULT 'NULL',
+	`ColonoscopyMonth` int(11) DEFAULT 'NULL',
+	`ColonoscopyComments` varchar(500) DEFAULT 'NULL',
+	`Mammogram` tinyint(1) NOT NULL,
+	`MammogramYear` int(11) DEFAULT 'NULL',
+	`MammogramMonth` int(11) DEFAULT 'NULL',
+	`MammogramComments` varchar(500) DEFAULT 'NULL',
+	`PelvicExam` tinyint(1) NOT NULL,
+	`PelvicExamYear` int(11) DEFAULT 'NULL',
+	`PelvicExamMonth` int(11) DEFAULT 'NULL',
+	`PelvicExamComments` varchar(500) DEFAULT 'NULL',
+	`PapSmear` tinyint(1) NOT NULL,
+	`PapSmearYear` int(11) DEFAULT 'NULL',
+	`PapSmearMonth` int(11) DEFAULT 'NULL',
+	`PapSmearComments` varchar(500) DEFAULT 'NULL',
+	`PatientID` char(36) NOT NULL,
+	`DigitalRectalExam` tinyint(1) NOT NULL,
+	`DigitalRectalExamYear` int(11) DEFAULT 'NULL',
+	`DigitalRectalExamMonth` int(11) DEFAULT 'NULL',
+	`DigitalRectalExamComments` varchar(500) DEFAULT 'NULL',
+	`ProstateSpecificAntigenTest` tinyint(1) NOT NULL,
+	`ProstateSpecificAntigenTestYear` int(11) DEFAULT 'NULL',
+	`ProstateSpecificAntigenTestMonth` int(11) DEFAULT 'NULL',
+	`ProstateSpecificAntigenTestComments` varchar(500) DEFAULT 'NULL',
+	`DDHScreening` tinyint(1) NOT NULL,
+	`DDHScreeningMonth` int(11) DEFAULT 'NULL',
+	`DDHScreeningYear` int(11) DEFAULT 'NULL',
+	`DDHScreeningComments` varchar(500) DEFAULT 'NULL',
+	`__sysChangeTxBsn` bigint(20) DEFAULT 'NULL',
+	`__sysInsertTxBsn` bigint(20) DEFAULT 'NULL',
+	`__sysTrackingContext` char(36) DEFAULT 'NULL'
+);
+--> statement-breakpoint
+CREATE TABLE `patientdstitems` (
+	`PatientDSTItemID` char(36) NOT NULL,
+	`PatientID` char(36) NOT NULL,
+	`ItemID` char(36) NOT NULL,
+	`ItemValue` double DEFAULT 'NULL',
+	`ItemPerentage` varchar(50) DEFAULT 'NULL',
+	`__sysChangeTxBsn` bigint(20) DEFAULT 'NULL',
+	`__sysInsertTxBsn` bigint(20) DEFAULT 'NULL',
+	`__sysTrackingContext` char(36) DEFAULT 'NULL'
+);
+--> statement-breakpoint
+CREATE TABLE `patientechocardiogramtests` (
+	`PatientEchoCardiogramTestID` char(36) NOT NULL,
+	`PatientID` char(36) NOT NULL,
+	`PatientVisitID` char(36) DEFAULT 'NULL',
+	`RequestedBy` varchar(250) DEFAULT 'NULL',
+	`PPD` varchar(550) DEFAULT 'NULL',
+	`LVEDD` double DEFAULT 'NULL',
+	`LVESD` double DEFAULT 'NULL',
+	`IVS` double DEFAULT 'NULL',
+	`PLVW` double DEFAULT 'NULL',
+	`AorticRoot` double DEFAULT 'NULL',
+	`LA` double DEFAULT 'NULL',
+	`RV` double DEFAULT 'NULL',
+	`DMModeFindings` longtext DEFAULT 'NULL',
+	`DopplerFindings` longtext DEFAULT 'NULL',
+	`Conclusion` longtext DEFAULT 'NULL',
+	`TestDate` datetime(3) NOT NULL,
+	`__sysChangeTxBsn` bigint(20) DEFAULT 'NULL',
+	`__sysInsertTxBsn` bigint(20) DEFAULT 'NULL',
+	`__sysTrackingContext` char(36) DEFAULT 'NULL'
+);
+--> statement-breakpoint
+CREATE TABLE `patienteducationalhistory` (
+	`EducationLevelInYears` int(11) DEFAULT 'NULL',
+	`BachelorField` varchar(150) DEFAULT 'NULL',
+	`BachelorCollege` varchar(150) DEFAULT 'NULL',
+	`MastersField` varchar(150) DEFAULT 'NULL',
+	`MastersCollege` varchar(150) DEFAULT 'NULL',
+	`DoctorateField` varchar(150) DEFAULT 'NULL',
+	`DoctorateCollege` varchar(150) DEFAULT 'NULL',
+	`PatientID` char(36) NOT NULL,
+	`__sysChangeTxBsn` bigint(20) DEFAULT 'NULL',
+	`__sysInsertTxBsn` bigint(20) DEFAULT 'NULL',
+	`__sysTrackingContext` char(36) DEFAULT 'NULL'
+);
+--> statement-breakpoint
+CREATE TABLE `patientfemalerelatedhistory` (
+	`SexualProblem` tinyint(1) NOT NULL,
+	`SexualProblemsComments` varchar(500) DEFAULT 'NULL',
+	`PregnantNumber` int(11) DEFAULT 'NULL',
+	`MiscarriagesNumber` int(11) DEFAULT 'NULL',
+	`AbortionsNumber` int(11) DEFAULT 'NULL',
+	`LastMenstrualPeriodDate` datetime(3) DEFAULT 'NULL',
+	`TypicalPeriodDuration` varchar(250) DEFAULT 'NULL',
+	`HowOftenPeriod` varchar(250) DEFAULT 'NULL',
+	`PeriodProblems` tinyint(1) NOT NULL,
+	`PeriodProblemsComments` varchar(500) DEFAULT 'NULL',
+	`Dysmenorrhea` tinyint(1) NOT NULL,
+	`Dyspareunia` tinyint(1) NOT NULL,
+	`LowerAbdominalPain` tinyint(1) NOT NULL,
+	`VaginalDischargeColor` varchar(250) DEFAULT 'NULL',
+	`VaginalDischargeNature` varchar(250) DEFAULT 'NULL',
+	`VaginalDischargeSmell` varchar(250) DEFAULT 'NULL',
+	`VaginalDischargeAmount` varchar(250) DEFAULT 'NULL',
+	`VaginalMasses` varchar(250) DEFAULT 'NULL',
+	`VaginalHeaviness` varchar(250) DEFAULT 'NULL',
+	`VaginalBleeding` varchar(250) DEFAULT 'NULL',
+	`Menorrhagia` varchar(250) DEFAULT 'NULL',
+	`PostCoitalBleeding` tinyint(1) NOT NULL,
+	`Oligomenorrhea` tinyint(1) NOT NULL,
+	`Polymenorrhea` tinyint(1) NOT NULL,
+	`Itching` tinyint(1) NOT NULL,
+	`ContraceptionUsage` tinyint(1) NOT NULL,
+	`BreastMass` varchar(10) DEFAULT 'NULL',
+	`BreastMassOnsetYear` varchar(10) DEFAULT 'NULL',
+	`BreastMassWayOfDiscovery` longtext DEFAULT 'NULL',
+	`BreastPain` varchar(10) DEFAULT 'NULL',
+	`BreastPainOnset` varchar(10) DEFAULT 'NULL',
+	`BreastPainNature` varchar(250) DEFAULT 'NULL',
+	`BreastPainDuration` varchar(250) DEFAULT 'NULL',
+	`BreastDischargeColor` varchar(250) DEFAULT 'NULL',
+	`BreastDischargeNature` varchar(250) DEFAULT 'NULL',
+	`BreastSkinChange` varchar(250) DEFAULT 'NULL',
+	`BreastSkinChangeNotes` longtext DEFAULT 'NULL',
+	`NippleInversion` tinyint(1) NOT NULL,
+	`Galactorrhea` tinyint(1) NOT NULL,
+	`PatientID` char(36) NOT NULL,
+	`IsSexualyActive` tinyint(1) NOT NULL,
+	`SexualPartnersNumber` int(11) DEFAULT 'NULL',
+	`UnknownSexualPartners` tinyint(1) NOT NULL,
+	`FailureToGetOrgasm` tinyint(1) NOT NULL,
+	`DelayedOrgasm` tinyint(1) NOT NULL,
+	`UncontrolledOrgasm` tinyint(1) NOT NULL,
+	`VaginalSpotting` tinyint(1) NOT NULL,
+	`IsMenopause` tinyint(1) NOT NULL,
+	`PostMenopausalBleeding` tinyint(1) NOT NULL,
+	`HotFlush` tinyint(1) NOT NULL,
+	`NightSweats` tinyint(1) NOT NULL,
+	`AgeOfMenarche` int(11) DEFAULT 'NULL',
+	`AgeOfMenopause` int(11) DEFAULT 'NULL',
+	`RegularPeriods` tinyint(1) NOT NULL,
+	`RegularPeriodsNotes` longtext DEFAULT 'NULL',
+	`AmountOfBleeding` longtext DEFAULT 'NULL',
+	`HistoryOfPretermDelivery` tinyint(1) NOT NULL,
+	`CurrentlyPregnant` tinyint(1) NOT NULL,
+	`PreviousLiveBirths` int(11) DEFAULT 'NULL',
+	`PreviousConception` int(11) DEFAULT 'NULL',
+	`AnyAssistedReproductiveTechnique` longtext DEFAULT 'NULL',
+	`PlannedPregnancy` tinyint(1) NOT NULL,
+	`PreconceptionOfFolicAcid` tinyint(1) NOT NULL,
+	`ProblemsInThisPregnancy` longtext DEFAULT 'NULL',
+	`ProblemsInPreviousPregnancy` longtext DEFAULT 'NULL',
+	`AntenatalProblems` longtext DEFAULT 'NULL',
+	`PostpartumProblems` longtext DEFAULT 'NULL',
+	`Nausea` tinyint(1) NOT NULL,
+	`Vomting` tinyint(1) NOT NULL,
+	`UrinarySymtoms` longtext DEFAULT 'NULL',
+	`PregnancyBloodTest` longtext DEFAULT 'NULL',
+	`UrineTest` longtext DEFAULT 'NULL',
+	`UltraSound` longtext DEFAULT 'NULL',
+	`BirthWeightOfChild` longtext DEFAULT 'NULL',
+	`ModeOfDeliveryForEachChild` longtext DEFAULT 'NULL',
+	`BreastMassOnset` varchar(10) DEFAULT 'NULL',
+	`BreastMassIsMobile` tinyint(1) NOT NULL,
+	`BreastMassSkinChange` tinyint(1) NOT NULL,
+	`IsAllTime` tinyint(1) NOT NULL,
+	`BreastMassNotes` longtext DEFAULT 'NULL',
+	`BreastDischargeColorDuration` varchar(250) DEFAULT 'NULL',
+	`BreastDischargeNatureDuration` varchar(250) DEFAULT 'NULL',
+	`SkinThickening` longtext DEFAULT 'NULL',
+	`SkinTethering` longtext DEFAULT 'NULL',
+	`SkinRedness` longtext DEFAULT 'NULL',
+	`PostCoitalPain` tinyint(1) NOT NULL,
+	`MidcyclePain` tinyint(1) NOT NULL,
+	`TFullTerm` int(11) DEFAULT 'NULL',
+	`PPreTerm` int(11) DEFAULT 'NULL',
+	`AAbortionsMiscarrigares` int(11) DEFAULT 'NULL',
+	`LLivingChildren` int(11) DEFAULT 'NULL',
+	`__sysChangeTxBsn` bigint(20) DEFAULT 'NULL',
+	`__sysInsertTxBsn` bigint(20) DEFAULT 'NULL',
+	`__sysTrackingContext` char(36) DEFAULT 'NULL'
+);
+--> statement-breakpoint
+CREATE TABLE `patientgdhx` (
+	`PatientID` char(36) NOT NULL,
+	`FirstRaisedHead` int(11) DEFAULT 'NULL',
+	`RolledOver` int(11) DEFAULT 'NULL',
+	`SatAlone` int(11) DEFAULT 'NULL',
+	`PulledUp` int(11) DEFAULT 'NULL',
+	`WalkedWithHelp` int(11) DEFAULT 'NULL',
+	`WalkedAlone` int(11) DEFAULT 'NULL',
+	`TalkedWords` int(11) DEFAULT 'NULL',
+	`TalkedSentences` int(11) DEFAULT 'NULL',
+	`UrinaryDuringNight` int(11) DEFAULT 'NULL',
+	`UrinaryDuringDay` int(11) DEFAULT 'NULL',
+	`ControlOfFeces` int(11) DEFAULT 'NULL',
+	`DevelopementComparison` varchar(500) DEFAULT 'NULL',
+	`DentalEruptions` varchar(500) DEFAULT 'NULL',
+	`__sysChangeTxBsn` bigint(20) DEFAULT 'NULL',
+	`__sysInsertTxBsn` bigint(20) DEFAULT 'NULL',
+	`__sysTrackingContext` char(36) DEFAULT 'NULL'
+);
+--> statement-breakpoint
+CREATE TABLE `patientgeneralappearance` (
+	`Appearance` varchar(500) DEFAULT 'NULL',
+	`BodyBuild` varchar(500) DEFAULT 'NULL',
+	`Demeanor` varchar(500) DEFAULT 'NULL',
+	`Hygiene` varchar(500) DEFAULT 'NULL',
+	`PatientID` char(36) NOT NULL,
+	`__sysChangeTxBsn` bigint(20) DEFAULT 'NULL',
+	`__sysInsertTxBsn` bigint(20) DEFAULT 'NULL',
+	`__sysTrackingContext` char(36) DEFAULT 'NULL'
+);
+--> statement-breakpoint
+CREATE TABLE `patientgeneralreviewquestionaire` (
+	`WeightLoss` varchar(10) DEFAULT 'NULL',
+	`WeightLossMagnitude` int(11) DEFAULT 'NULL',
+	`WeightLossOnsetYear` int(11) DEFAULT 'NULL',
+	`WeightLossStillProblem` tinyint(1) NOT NULL,
+	`WeightLossComments` varchar(500) DEFAULT 'NULL',
+	`WeightUnit` varchar(10) DEFAULT 'NULL',
+	`WeightGain` varchar(10) DEFAULT 'NULL',
+	`WeightGainMagnitude` int(11) DEFAULT 'NULL',
+	`WeightGainOnsetYear` int(11) DEFAULT 'NULL',
+	`WeightGainStillProblem` tinyint(1) NOT NULL,
+	`WeightGainComments` varchar(500) DEFAULT 'NULL',
+	`ChronicFatigue` varchar(10) DEFAULT 'NULL',
+	`ChronicFatigueOnsetYear` int(11) DEFAULT 'NULL',
+	`ChronicFatigueStillProblem` tinyint(1) NOT NULL,
+	`ChronicFatigueComments` varchar(500) DEFAULT 'NULL',
+	`ChnageInAppetite` varchar(10) DEFAULT 'NULL',
+	`ChnageInAppetiteOnsetYear` int(11) DEFAULT 'NULL',
+	`ChnageInAppetiteStillProblem` tinyint(1) NOT NULL,
+	`ChnageInAppetiteComments` varchar(500) DEFAULT 'NULL',
+	`NightSweats` varchar(10) DEFAULT 'NULL',
+	`NightSweatsOnsetYear` int(11) DEFAULT 'NULL',
+	`NightSweatsStillProblem` tinyint(1) NOT NULL,
+	`NightSweatsComments` varchar(500) DEFAULT 'NULL',
+	`Fever` varchar(10) DEFAULT 'NULL',
+	`FeverOnsetYear` int(11) DEFAULT 'NULL',
+	`FeverStillProblem` tinyint(1) NOT NULL,
+	`FeverComments` varchar(500) DEFAULT 'NULL',
+	`Cancer` varchar(10) DEFAULT 'NULL',
+	`CancerYearOfOnset` int(11) DEFAULT 'NULL',
+	`CancerStillProblem` tinyint(1) NOT NULL,
+	`CancerComments` varchar(500) DEFAULT 'NULL',
+	`ChronicPain` varchar(10) DEFAULT 'NULL',
+	`ChronicPainYearOfOnset` int(11) DEFAULT 'NULL',
+	`ChronicPainStillProblem` tinyint(1) NOT NULL,
+	`ChronicPainComments` varchar(500) DEFAULT 'NULL',
+	`ChronicPainSite` varchar(250) DEFAULT 'NULL',
+	`ChronicPainNature` varchar(250) DEFAULT 'NULL',
+	`ChronicPainRadiation` varchar(250) DEFAULT 'NULL',
+	`ChronicPainDuration` varchar(250) DEFAULT 'NULL',
+	`ChronicPainFrequency` varchar(250) DEFAULT 'NULL',
+	`SleepingProblems` varchar(10) DEFAULT 'NULL',
+	`SleepingPatterns` varchar(100) DEFAULT 'NULL',
+	`SleepingProblemsOfOnset` int(11) DEFAULT 'NULL',
+	`SleepingProblemsStillProblem` tinyint(1) NOT NULL,
+	`SleepingProblemsComments` varchar(500) DEFAULT 'NULL',
+	`Rash` varchar(10) DEFAULT 'NULL',
+	`RashYearOfOnset` int(11) DEFAULT 'NULL',
+	`RashStillProblem` tinyint(1) NOT NULL,
+	`RashComments` varchar(500) DEFAULT 'NULL',
+	`RashSite` varchar(250) DEFAULT 'NULL',
+	`RashNature` varchar(250) DEFAULT 'NULL',
+	`Itching` varchar(10) DEFAULT 'NULL',
+	`ItchingYearOfOnset` int(11) DEFAULT 'NULL',
+	`ItchingStillProblem` tinyint(1) NOT NULL,
+	`ItchingComments` varchar(500) DEFAULT 'NULL',
+	`ItchingSite` varchar(250) DEFAULT 'NULL',
+	`RecentTrauma` varchar(10) DEFAULT 'NULL',
+	`RecentTraumaMechanism` varchar(250) DEFAULT 'NULL',
+	`RecentTraumaDate` datetime(3) DEFAULT 'NULL',
+	`PatientID` char(36) NOT NULL,
+	`__sysChangeTxBsn` bigint(20) DEFAULT 'NULL',
+	`__sysInsertTxBsn` bigint(20) DEFAULT 'NULL',
+	`__sysTrackingContext` char(36) DEFAULT 'NULL'
+);
+--> statement-breakpoint
+CREATE TABLE `patientimmunizationhistory` (
+	`LastTetanusShotDate` datetime(3) DEFAULT 'NULL',
+	`AnnualFluVaccine` tinyint(1) NOT NULL,
+	`PneumococcalVaccine` tinyint(1) NOT NULL,
+	`TuberculosisSkinTest` tinyint(1) NOT NULL,
+	`TuberculosisSkinTestNegative` tinyint(1) NOT NULL,
+	`TuberculosisSkinTestDate` datetime(3) DEFAULT 'NULL',
+	`PatientID` char(36) NOT NULL,
+	`__sysChangeTxBsn` bigint(20) DEFAULT 'NULL',
+	`__sysInsertTxBsn` bigint(20) DEFAULT 'NULL',
+	`__sysTrackingContext` char(36) DEFAULT 'NULL'
+);
+--> statement-breakpoint
+CREATE TABLE `patientimmunizations` (
+	`VaccineType` varchar(50) DEFAULT 'NULL',
+	`Dose` varchar(50) DEFAULT 'NULL',
+	`AgeAdministered` varchar(50) DEFAULT 'NULL',
+	`DateAdministered` datetime(3) DEFAULT 'NULL',
+	`LotNumber` varchar(50) DEFAULT 'NULL',
+	`Physician` varchar(50) DEFAULT 'NULL',
+	`PatientImmunizationID` char(36) NOT NULL,
+	`ImmunizationsVaccineID` char(36) NOT NULL,
+	`PatientID` char(36) NOT NULL,
+	`__sysChangeTxBsn` bigint(20) DEFAULT 'NULL',
+	`__sysInsertTxBsn` bigint(20) DEFAULT 'NULL',
+	`__sysTrackingContext` char(36) DEFAULT 'NULL'
+);
+--> statement-breakpoint
+CREATE TABLE `patientinsurancedetails` (
+	`InsuranceCompany` longtext NOT NULL,
+	`InsuranceLevel` varchar(250) DEFAULT 'NULL',
+	`Notes` longtext DEFAULT 'NULL',
+	`CoveragePercentage` double DEFAULT 'NULL',
+	`InsuranceCardNumber` varchar(50) DEFAULT 'NULL',
+	`IsActive` tinyint(1) NOT NULL,
+	`PatientInsuranceDetailID` char(36) NOT NULL,
+	`PatientID` char(36) NOT NULL,
+	`ParticipantName` varchar(400) DEFAULT 'NULL',
+	`FormNumber` varchar(250) DEFAULT 'NULL',
+	`ParticipantCompany` varchar(250) DEFAULT 'NULL',
+	`RelationToParticipant` varchar(250) DEFAULT 'NULL',
+	`HealthInsuranceEntityID` char(36) DEFAULT 'NULL',
+	`BenefitPackageID` char(36) DEFAULT 'NULL',
+	`__sysChangeTxBsn` bigint(20) DEFAULT 'NULL',
+	`__sysInsertTxBsn` bigint(20) DEFAULT 'NULL',
+	`__sysTrackingContext` char(36) DEFAULT 'NULL'
+);
+--> statement-breakpoint
+CREATE TABLE `patientinvoices` (
+	`PatientInvoiceID` char(36) NOT NULL,
+	`PatientID` char(36) NOT NULL,
+	`PaidByPatient` double NOT NULL,
+	`FinalBalance` double NOT NULL,
+	`OldBalance` double NOT NULL,
+	`CoveredByHealthInsurance` double DEFAULT 'NULL',
+	`CoveredByHospital` double DEFAULT 'NULL',
+	`Migrated` tinyint(1) NOT NULL,
+	`PatientInsuranceDetailID` char(36) DEFAULT 'NULL',
+	`HospitalName` varchar(250) DEFAULT 'NULL',
+	`AddedByUserID` char(36) NOT NULL,
+	`InvoiceDate` datetime(3) NOT NULL,
+	`HCenterID` char(36) NOT NULL,
+	`CreationDate` datetime(3) NOT NULL,
+	`InvoiceNumber` varchar(50) NOT NULL,
+	`Discount` double NOT NULL,
+	`__sysChangeTxBsn` bigint(20) DEFAULT 'NULL',
+	`__sysInsertTxBsn` bigint(20) DEFAULT 'NULL',
+	`__sysTrackingContext` char(36) DEFAULT 'NULL'
+);
+--> statement-breakpoint
+CREATE TABLE `patientjobs` (
+	`JobTitle` varchar(250) DEFAULT 'NULL',
+	`Organization` varchar(250) DEFAULT 'NULL',
+	`Duration` varchar(250) DEFAULT 'NULL',
+	`IsCurrent` tinyint(1) NOT NULL,
+	`HazardExposure` tinyint(1) NOT NULL,
+	`UseOfProtectiveMethods` tinyint(1) NOT NULL,
+	`Comments` longtext DEFAULT 'NULL',
+	`PatientJobID` char(36) NOT NULL,
+	`PatientID` char(36) NOT NULL,
+	`__sysChangeTxBsn` bigint(20) DEFAULT 'NULL',
+	`__sysInsertTxBsn` bigint(20) DEFAULT 'NULL',
+	`__sysTrackingContext` char(36) DEFAULT 'NULL'
+);
+--> statement-breakpoint
+CREATE TABLE `patientlabrequests` (
+	`PatientLabRequestID` char(36) NOT NULL,
+	`PatientID` char(36) NOT NULL,
+	`LabRequest` varchar(500) NOT NULL,
+	`Lab` varchar(500) DEFAULT 'NULL',
+	`RequestDate` datetime(3) NOT NULL,
+	`ExpectedDeliveryDate` datetime(3) NOT NULL,
+	`IsDelivered` tinyint(1) NOT NULL,
+	`DeliveryDate` datetime(3) DEFAULT 'NULL',
+	`__sysChangeTxBsn` bigint(20) DEFAULT 'NULL',
+	`__sysInsertTxBsn` bigint(20) DEFAULT 'NULL',
+	`__sysTrackingContext` char(36) DEFAULT 'NULL'
+);
+--> statement-breakpoint
+CREATE TABLE `patientlongtermmedicines` (
+	`Dose` varchar(250) DEFAULT 'NULL',
+	`Frequency` double DEFAULT 'NULL',
+	`FrequencyUnit` varchar(50) DEFAULT 'NULL',
+	`Period` varchar(250) DEFAULT 'NULL',
+	`Notes` longtext DEFAULT 'NULL',
+	`QuantityNumber` varchar(50) DEFAULT 'NULL',
+	`QuantityForm` varchar(50) DEFAULT 'NULL',
+	`Route` varchar(50) DEFAULT 'NULL',
+	`PrescribedBy` varchar(50) DEFAULT 'NULL',
+	`PrescriptionDate` datetime(3) DEFAULT 'NULL',
+	`Indication` longtext DEFAULT 'NULL',
+	`PatientLongTermMedicineID` char(36) NOT NULL,
+	`MedicineID` char(36) NOT NULL,
+	`PatientID` char(36) NOT NULL,
+	`__sysChangeTxBsn` bigint(20) DEFAULT 'NULL',
+	`__sysInsertTxBsn` bigint(20) DEFAULT 'NULL',
+	`__sysTrackingContext` char(36) DEFAULT 'NULL'
+);
+--> statement-breakpoint
+CREATE TABLE `patientmalerelatedhistory` (
+	`Impotence` varchar(10) DEFAULT 'NULL',
+	`ImpotenceOnsetYear` varchar(10) DEFAULT 'NULL',
+	`ImpotenceStillProblem` tinyint(1) NOT NULL,
+	`ImpotenceComments` longtext DEFAULT 'NULL',
+	`ErectileDysfunction` varchar(10) DEFAULT 'NULL',
+	`ErectileDysfunctionOnsetYear` varchar(10) DEFAULT 'NULL',
+	`ErectileDysfunctionStillProblem` tinyint(1) NOT NULL,
+	`ErectileDysfunctionComments` longtext DEFAULT 'NULL',
+	`DifficultyUrinating` varchar(10) DEFAULT 'NULL',
+	`DifficultyUrinatingOnsetYear` varchar(10) DEFAULT 'NULL',
+	`DifficultyUrinatingStillProblem` tinyint(1) NOT NULL,
+	`DifficultyUrinatingComments` longtext DEFAULT 'NULL',
+	`AwakeningToUrinate` varchar(10) DEFAULT 'NULL',
+	`AwakeningToUrinateOnsetYear` varchar(10) DEFAULT 'NULL',
+	`AwakeningToUrinateStillProblem` tinyint(1) NOT NULL,
+	`AwakeningToUrinateComments` longtext DEFAULT 'NULL',
+	`ProstateTrouble` varchar(10) DEFAULT 'NULL',
+	`ProstateTroubleOnsetYear` varchar(10) DEFAULT 'NULL',
+	`ProstateTroubleStillProblem` tinyint(1) NOT NULL,
+	`ProstateTroubleComments` longtext DEFAULT 'NULL',
+	`TesticularPain` varchar(15) DEFAULT 'NULL',
+	`TesticularPainOnset` varchar(10) DEFAULT 'NULL',
+	`TesticularPainDuration` varchar(250) DEFAULT 'NULL',
+	`TesticularPainNature` varchar(250) DEFAULT 'NULL',
+	`TesticularSwelling` varchar(15) DEFAULT 'NULL',
+	`TesticularSwellingOnset` varchar(10) DEFAULT 'NULL',
+	`TesticularSwellingDuration` varchar(250) DEFAULT 'NULL',
+	`TesticularSwellingNature` varchar(250) DEFAULT 'NULL',
+	`UrethralDischarge` varchar(10) DEFAULT 'NULL',
+	`UrethralDischargeColor` varchar(250) DEFAULT 'NULL',
+	`UrethralDischargeSmell` varchar(250) DEFAULT 'NULL',
+	`UrethralDischargeNature` varchar(250) DEFAULT 'NULL',
+	`Circumcision` tinyint(1) NOT NULL,
+	`Ulcers` varchar(10) DEFAULT 'NULL',
+	`UlcersPaintful` tinyint(1) NOT NULL,
+	`PatientID` char(36) NOT NULL,
+	`SexualPartners` varchar(20) DEFAULT 'NULL',
+	`CircumcisionNotes` longtext DEFAULT 'NULL',
+	`PrematureEjaculation` tinyint(1) NOT NULL,
+	`SustainedErection` tinyint(1) NOT NULL,
+	`Anorgasmia` tinyint(1) NOT NULL,
+	`DelayedOrgasm` tinyint(1) NOT NULL,
+	`ReducedSexualDesire` tinyint(1) NOT NULL,
+	`__sysChangeTxBsn` bigint(20) DEFAULT 'NULL',
+	`__sysInsertTxBsn` bigint(20) DEFAULT 'NULL',
+	`__sysTrackingContext` char(36) DEFAULT 'NULL'
+);
+--> statement-breakpoint
+CREATE TABLE `patientnatalhx` (
+	`PatientID` char(36) NOT NULL,
+	`PregnancyDuration` int(11) DEFAULT 'NULL',
+	`BirthWeight` int(11) DEFAULT 'NULL',
+	`KindOfLabor` int(11) NOT NULL,
+	`KindOfLaborNotes` varchar(500) DEFAULT 'NULL',
+	`Presentation` int(11) NOT NULL,
+	`SedationAnesthesia` tinyint(1) NOT NULL,
+	`SedationAnesthesiaType` int(11) NOT NULL,
+	`StateOfInfantAtBirth` varchar(250) DEFAULT 'NULL',
+	`ResuscitationRequired` tinyint(1) NOT NULL,
+	`lie` int(11) NOT NULL,
+	`ABOBloodGroupBaby` int(11) NOT NULL,
+	`RHTypingBaby` int(11) NOT NULL,
+	`Malformation` tinyint(1) NOT NULL,
+	`MalformationComments` varchar(500) DEFAULT 'NULL',
+	`BirthInjury` tinyint(1) NOT NULL,
+	`__sysChangeTxBsn` bigint(20) DEFAULT 'NULL',
+	`__sysInsertTxBsn` bigint(20) DEFAULT 'NULL',
+	`__sysTrackingContext` char(36) DEFAULT 'NULL'
+);
+--> statement-breakpoint
+CREATE TABLE `patientneonatalhx` (
+	`PatientID` char(36) NOT NULL,
+	`HeartRate` int(11) NOT NULL,
+	`RespiratoryRate` int(11) NOT NULL,
+	`MuscleTone` int(11) NOT NULL,
+	`ReflexOfIrritability` int(11) NOT NULL,
+	`Color` int(11) NOT NULL,
+	`Cyanosis` tinyint(1) NOT NULL,
+	`Pallor` tinyint(1) NOT NULL,
+	`Jaundice` tinyint(1) NOT NULL,
+	`Twitchings` tinyint(1) NOT NULL,
+	`ExcessiveMucus` tinyint(1) NOT NULL,
+	`Paralysis` tinyint(1) NOT NULL,
+	`Convulsions` tinyint(1) NOT NULL,
+	`Fever` tinyint(1) NOT NULL,
+	`Hemorrhage` tinyint(1) NOT NULL,
+	`CongenitalAbnormalities` tinyint(1) NOT NULL,
+	`BirthInjury` tinyint(1) NOT NULL,
+	`DifficultyInSucking` tinyint(1) NOT NULL,
+	`Rashes` tinyint(1) NOT NULL,
+	`ExcessiveWeightLoss` tinyint(1) NOT NULL,
+	`FeedingDifficulties` tinyint(1) NOT NULL,
+	`Circumcision` tinyint(1) NOT NULL,
+	`NICUAdmission` tinyint(1) NOT NULL,
+	`__sysChangeTxBsn` bigint(20) DEFAULT 'NULL',
+	`__sysInsertTxBsn` bigint(20) DEFAULT 'NULL',
+	`__sysTrackingContext` char(36) DEFAULT 'NULL'
+);
+--> statement-breakpoint
+CREATE TABLE `patientnutritionalhx` (
+	`Appetite` int(11) NOT NULL,
+	`AppetiteComments` varchar(500) DEFAULT 'NULL',
+	`VitaminsSupplements` tinyint(1) NOT NULL,
+	`NumberOfMeals` int(11) DEFAULT 'NULL',
+	`FoodVariation` int(11) NOT NULL,
+	`Pica` tinyint(1) NOT NULL,
+	`PicaType` varchar(150) DEFAULT 'NULL',
+	`BowelHabit` int(11) NOT NULL,
+	`VitaminsSupplementsComments` varchar(500) DEFAULT 'NULL',
+	`PatientVisitID` char(36) NOT NULL,
+	`__sysChangeTxBsn` bigint(20) DEFAULT 'NULL',
+	`__sysInsertTxBsn` bigint(20) DEFAULT 'NULL',
+	`__sysTrackingContext` char(36) DEFAULT 'NULL'
+);
+--> statement-breakpoint
+CREATE TABLE `patientpasiscore` (
+	`PatientVisitID` char(36) NOT NULL,
+	`HeadErythema` int(11) NOT NULL,
+	`UppedLimbsErythema` int(11) NOT NULL,
+	`TrunkErythema` int(11) NOT NULL,
+	`LowerLimbsErythema` int(11) NOT NULL,
+	`HeadThickness` int(11) NOT NULL,
+	`UppedLimbsThickness` int(11) NOT NULL,
+	`TrunkThickness` int(11) NOT NULL,
+	`LowerLimbsThickness` int(11) NOT NULL,
+	`HeadScaling` int(11) NOT NULL,
+	`UppedLimbsScaling` int(11) NOT NULL,
+	`TrunkScaling` int(11) NOT NULL,
+	`LowerLimbsScaling` int(11) NOT NULL,
+	`A1` int(11) NOT NULL,
+	`A2` int(11) NOT NULL,
+	`A3` int(11) NOT NULL,
+	`A4` int(11) NOT NULL,
+	`B1` double NOT NULL,
+	`B2` double NOT NULL,
+	`B3` double NOT NULL,
+	`B4` double NOT NULL,
+	`HeadDI` int(11) NOT NULL,
+	`UppedLimbsDI` int(11) NOT NULL,
+	`TrunkDI` int(11) NOT NULL,
+	`LowerLimbsDI` int(11) NOT NULL,
+	`C1` double NOT NULL,
+	`C2` double NOT NULL,
+	`C3` double NOT NULL,
+	`C4` double NOT NULL,
+	`PASI` double NOT NULL,
+	`AnnotationXML` longtext DEFAULT 'NULL',
+	`__sysChangeTxBsn` bigint(20) DEFAULT 'NULL',
+	`__sysInsertTxBsn` bigint(20) DEFAULT 'NULL',
+	`__sysTrackingContext` char(36) DEFAULT 'NULL'
+);
+--> statement-breakpoint
+CREATE TABLE `patientpermanentdentaleruptions` (
+	`PatientID` char(36) NOT NULL,
+	`RUCenterIncisor` int(11) DEFAULT 'NULL',
+	`LUCenterIncisor` int(11) DEFAULT 'NULL',
+	`RULateralIncisor` int(11) DEFAULT 'NULL',
+	`LULateralIncisor` int(11) DEFAULT 'NULL',
+	`RUCanine` int(11) DEFAULT 'NULL',
+	`LUCanine` int(11) DEFAULT 'NULL',
+	`RUFirstMolar` int(11) DEFAULT 'NULL',
+	`LUFirstMolar` int(11) DEFAULT 'NULL',
+	`RUSecondMolar` int(11) DEFAULT 'NULL',
+	`LUSecondMolar` int(11) DEFAULT 'NULL',
+	`RLCenterIncisor` int(11) DEFAULT 'NULL',
+	`LLCenterIncisor` int(11) DEFAULT 'NULL',
+	`RLLateralIncisor` int(11) DEFAULT 'NULL',
+	`LLLateralIncisor` int(11) DEFAULT 'NULL',
+	`RLCanine` int(11) DEFAULT 'NULL',
+	`LLCanine` int(11) DEFAULT 'NULL',
+	`RLFirstMolar` int(11) DEFAULT 'NULL',
+	`LLFirstMolar` int(11) DEFAULT 'NULL',
+	`RLSecondMolar` int(11) DEFAULT 'NULL',
+	`LLSecondMolar` int(11) DEFAULT 'NULL',
+	`RUFirstPremolar` int(11) DEFAULT 'NULL',
+	`LUFirstPremolar` int(11) DEFAULT 'NULL',
+	`RLFirstPremolar` int(11) DEFAULT 'NULL',
+	`LLFirstPremolar` int(11) DEFAULT 'NULL',
+	`LLThirdMolar` int(11) DEFAULT 'NULL',
+	`RUThirdMolar` int(11) DEFAULT 'NULL',
+	`LUThirdMolar` int(11) DEFAULT 'NULL',
+	`RLThirdMolar` int(11) DEFAULT 'NULL',
+	`Notes` varchar(500) DEFAULT 'NULL',
+	`RUSecondPremolar` int(11) DEFAULT 'NULL',
+	`LUSecondPremolar` int(11) DEFAULT 'NULL',
+	`RLSecondPremolar` int(11) DEFAULT 'NULL',
+	`LLSecondPremolar` int(11) DEFAULT 'NULL',
+	`__sysChangeTxBsn` bigint(20) DEFAULT 'NULL',
+	`__sysInsertTxBsn` bigint(20) DEFAULT 'NULL',
+	`__sysTrackingContext` char(36) DEFAULT 'NULL'
+);
+--> statement-breakpoint
+CREATE TABLE `patientpreviouspregnancies` (
+	`PatientPreviousPregnancyID` char(36) NOT NULL,
+	`PatientID` char(36) NOT NULL,
+	`DeliveryDate` datetime(3) DEFAULT 'NULL',
+	`GestAge` double DEFAULT 'NULL',
+	`LaborLenght` double DEFAULT 'NULL',
+	`DeliveryType` int(11) NOT NULL,
+	`OC` varchar(500) DEFAULT 'NULL',
+	`InfantSex` int(11) NOT NULL,
+	`InfantName` varchar(250) DEFAULT 'NULL',
+	`InfantWeight` double DEFAULT 'NULL',
+	`InfantWeightUnit` varchar(50) DEFAULT 'NULL',
+	`NeonatalComplications` varchar(500) DEFAULT 'NULL',
+	`IsTwin` tinyint(1) NOT NULL,
+	`__sysChangeTxBsn` bigint(20) DEFAULT 'NULL',
+	`__sysInsertTxBsn` bigint(20) DEFAULT 'NULL',
+	`__sysTrackingContext` char(36) DEFAULT 'NULL'
+);
+--> statement-breakpoint
+CREATE TABLE `patientprimarydentaleruptions` (
+	`PatientID` char(36) NOT NULL,
+	`RUCenterIncisor` int(11) DEFAULT 'NULL',
+	`LUCenterIncisor` int(11) DEFAULT 'NULL',
+	`RULateralIncisor` int(11) DEFAULT 'NULL',
+	`LULateralIncisor` int(11) DEFAULT 'NULL',
+	`RUCanine` int(11) DEFAULT 'NULL',
+	`LUCanine` int(11) DEFAULT 'NULL',
+	`RUFirstMolar` int(11) DEFAULT 'NULL',
+	`LUFirstMolar` int(11) DEFAULT 'NULL',
+	`RUSecondMolar` int(11) DEFAULT 'NULL',
+	`LUSecondMolar` int(11) DEFAULT 'NULL',
+	`RLCenterIncisor` int(11) DEFAULT 'NULL',
+	`LLCenterIncisor` int(11) DEFAULT 'NULL',
+	`RLLateralIncisor` int(11) DEFAULT 'NULL',
+	`LLLateralIncisor` int(11) DEFAULT 'NULL',
+	`RLCanine` int(11) DEFAULT 'NULL',
+	`LLCanine` int(11) DEFAULT 'NULL',
+	`RLFirstMolar` int(11) DEFAULT 'NULL',
+	`LLFirstMolar` int(11) DEFAULT 'NULL',
+	`RLSecondMolar` int(11) DEFAULT 'NULL',
+	`LLSecondMolar` int(11) DEFAULT 'NULL',
+	`Notes` varchar(500) DEFAULT 'NULL',
+	`__sysChangeTxBsn` bigint(20) DEFAULT 'NULL',
+	`__sysInsertTxBsn` bigint(20) DEFAULT 'NULL',
+	`__sysTrackingContext` char(36) DEFAULT 'NULL'
+);
+--> statement-breakpoint
+CREATE TABLE `patientproblems` (
+	`ProblemText` longtext NOT NULL,
+	`ProblemCategory` int(11) NOT NULL,
+	`OnsetDate` datetime(3) DEFAULT 'NULL',
+	`LastOccurenceDate` datetime(3) DEFAULT 'NULL',
+	`IsActive` tinyint(1) NOT NULL,
+	`IsUserModified` tinyint(1) NOT NULL,
+	`PatientProblemID` char(36) NOT NULL,
+	`PatientID` char(36) NOT NULL,
+	`__sysChangeTxBsn` bigint(20) DEFAULT 'NULL',
+	`__sysInsertTxBsn` bigint(20) DEFAULT 'NULL',
+	`__sysTrackingContext` char(36) DEFAULT 'NULL'
+);
+--> statement-breakpoint
+CREATE TABLE `patients` (
+	`NationalID` varchar(50) NOT NULL,
+	`Prefix` varchar(10) DEFAULT 'NULL',
+	`FirstName` varchar(50) DEFAULT 'NULL',
+	`SecondName` varchar(50) DEFAULT 'NULL',
+	`ThirdName` varchar(50) DEFAULT 'NULL',
+	`LastName` varchar(50) DEFAULT 'NULL',
+	`Sex` int(11) NOT NULL,
+	`Height` double DEFAULT 'NULL',
+	`Weight` double DEFAULT 'NULL',
+	`DateOfBirth` datetime(3) NOT NULL,
+	`MobileNumber` varchar(50) DEFAULT 'NULL',
+	`Email` varchar(250) DEFAULT 'NULL',
+	`Address` longtext DEFAULT 'NULL',
+	`PhotoFilename` varchar(250) DEFAULT 'NULL',
+	`OnlinePassword` varchar(250) DEFAULT 'NULL',
+	`ContactPersonName` varchar(250) DEFAULT 'NULL',
+	`ContactRelation` varchar(250) DEFAULT 'NULL',
+	`ContactPhoneNumber` varchar(250) DEFAULT 'NULL',
+	`Religion` varchar(50) DEFAULT 'NULL',
+	`WHUnit` varchar(50) DEFAULT 'NULL',
+	`IsDeleted` tinyint(1) NOT NULL,
+	`PatientID` char(36) NOT NULL,
+	`Nationality` char(36) DEFAULT 'NULL',
+	`HCenterID` char(36) NOT NULL,
+	`HumanRaceID` char(36) DEFAULT 'NULL',
+	`MaritalStatusID` char(36) DEFAULT 'NULL',
+	`SchoolPerformance` int(11) NOT NULL,
+	`FatherEducation` varchar(500) DEFAULT 'NULL',
+	`FatherOccupation` varchar(500) DEFAULT 'NULL',
+	`MotherEducation` varchar(500) DEFAULT 'NULL',
+	`MotherOccupation` varchar(500) DEFAULT 'NULL',
+	`ChildOrder` int(11) DEFAULT 'NULL',
+	`ChildrenCount` int(11) DEFAULT 'NULL',
+	`DateAdded` datetime(3) DEFAULT 'NULL',
+	`PassportNumber` varchar(50) DEFAULT 'NULL',
+	`PatientCreationMethod` int(11) NOT NULL,
+	`__sysChangeTxBsn` bigint(20) DEFAULT 'NULL',
+	`__sysInsertTxBsn` bigint(20) DEFAULT 'NULL',
+	`__sysTrackingContext` char(36) DEFAULT 'NULL'
+);
+--> statement-breakpoint
+CREATE TABLE `patientsaddetails` (
+	`LiveWithSmokers` tinyint(1) NOT NULL,
+	`ParentsWereSmokers` tinyint(1) NOT NULL,
+	`SmokedBofore` tinyint(1) NOT NULL,
+	`StillSmoking` tinyint(1) NOT NULL,
+	`CigarettesNumber` int(11) DEFAULT 'NULL',
+	`CigarettesStartYear` int(11) DEFAULT 'NULL',
+	`CigarettesStopYear` int(11) DEFAULT 'NULL',
+	`CigarettesPackYear` double DEFAULT 'NULL',
+	`CigarsNumber` int(11) DEFAULT 'NULL',
+	`CigarsStartYear` int(11) DEFAULT 'NULL',
+	`CigarsStopYear` int(11) DEFAULT 'NULL',
+	`CigarsPackYear` double DEFAULT 'NULL',
+	`PipeFullsNumber` int(11) DEFAULT 'NULL',
+	`PipefullsStartYear` int(11) DEFAULT 'NULL',
+	`PipefullsStopYear` int(11) DEFAULT 'NULL',
+	`PipefullPackYear` double DEFAULT 'NULL',
+	`SmoklessNumber` int(11) DEFAULT 'NULL',
+	`SmokelessStartYear` int(11) DEFAULT 'NULL',
+	`SmokelessStopYear` int(11) DEFAULT 'NULL',
+	`SmokelessPackYear` double DEFAULT 'NULL',
+	`SheeshaHeadNumber` int(11) DEFAULT 'NULL',
+	`SheeshaStartYear` int(11) DEFAULT 'NULL',
+	`SheeshaStopYear` int(11) DEFAULT 'NULL',
+	`SheehaPackYear` double DEFAULT 'NULL',
+	`Alcoholic` tinyint(1) NOT NULL,
+	`BeerNumber` int(11) DEFAULT 'NULL',
+	`WineNumber` int(11) DEFAULT 'NULL',
+	`LiquorNumber` int(11) DEFAULT 'NULL',
+	`PastAlcoholic` tinyint(1) NOT NULL,
+	`ExcessiveAlcoholUse` tinyint(1) NOT NULL,
+	`DrugUser` tinyint(1) NOT NULL,
+	`DrugComments` varchar(500) DEFAULT 'NULL',
+	`TotalPackYear` double DEFAULT 'NULL',
+	`PatientID` char(36) NOT NULL,
+	`DrinkingComments` varchar(500) DEFAULT 'NULL',
+	`SmokingComments` varchar(500) DEFAULT 'NULL',
+	`__sysChangeTxBsn` bigint(20) DEFAULT 'NULL',
+	`__sysInsertTxBsn` bigint(20) DEFAULT 'NULL',
+	`__sysTrackingContext` char(36) DEFAULT 'NULL'
+);
+--> statement-breakpoint
+CREATE TABLE `patientspecialnotes` (
+	`Note` longtext NOT NULL,
+	`PatientSpecialNoteID` char(36) NOT NULL,
+	`PatientID` char(36) NOT NULL,
+	`__sysChangeTxBsn` bigint(20) DEFAULT 'NULL',
+	`__sysInsertTxBsn` bigint(20) DEFAULT 'NULL',
+	`__sysTrackingContext` char(36) DEFAULT 'NULL'
+);
+--> statement-breakpoint
+CREATE TABLE `patienttestbehaviors` (
+	`PatientID` char(36) NOT NULL,
+	`Typical1` tinyint(1) NOT NULL,
+	`Typical2` tinyint(1) NOT NULL,
+	`Typical3` tinyint(1) NOT NULL,
+	`Compliance1` int(11) NOT NULL,
+	`Compliance2` int(11) NOT NULL,
+	`Compliance3` int(11) NOT NULL,
+	`Interest1` int(11) NOT NULL,
+	`Interest2` int(11) NOT NULL,
+	`Interest3` int(11) NOT NULL,
+	`Fearfulness1` int(11) NOT NULL,
+	`Fearfulness2` int(11) NOT NULL,
+	`Fearfulness3` int(11) NOT NULL,
+	`Attention1` int(11) NOT NULL,
+	`Attention2` int(11) NOT NULL,
+	`Attention3` int(11) NOT NULL,
+	`__sysChangeTxBsn` bigint(20) DEFAULT 'NULL',
+	`__sysInsertTxBsn` bigint(20) DEFAULT 'NULL',
+	`__sysTrackingContext` char(36) DEFAULT 'NULL'
+);
+--> statement-breakpoint
+CREATE TABLE `patienttests` (
+	`Notes` longtext DEFAULT 'NULL',
+	`RecordDate` datetime(3) NOT NULL,
+	`LotGUID` char(36) NOT NULL,
+	`Username` varchar(250) DEFAULT 'NULL',
+	`PatientTestID` char(36) NOT NULL,
+	`DiagnosticTestID` char(36) NOT NULL,
+	`PatientID` char(36) NOT NULL,
+	`PatientVisitID` char(36) DEFAULT 'NULL',
+	`__sysChangeTxBsn` bigint(20) DEFAULT 'NULL',
+	`__sysInsertTxBsn` bigint(20) DEFAULT 'NULL',
+	`__sysTrackingContext` char(36) DEFAULT 'NULL'
+);
+--> statement-breakpoint
+CREATE TABLE `patientvisits` (
+	`VisitDate` datetime(3) NOT NULL,
+	`Notes` longtext DEFAULT 'NULL',
+	`Recommendations` longtext DEFAULT 'NULL',
+	`Outcome` int(11) NOT NULL,
+	`Intesity` int(11) NOT NULL,
+	`ChiefComplaint` longtext DEFAULT 'NULL',
+	`HistoryOfPresentIllness` longtext DEFAULT 'NULL',
+	`Doctor` char(36) NOT NULL,
+	`SchedulingOfficer` char(36) DEFAULT 'NULL',
+	`SourceOfRefferral` varchar(250) DEFAULT 'NULL',
+	`PastMedicalHistory` longtext DEFAULT 'NULL',
+	`TransfereTo` varchar(250) DEFAULT 'NULL',
+	`IsDeleted` tinyint(1) NOT NULL,
+	`Disposition` longtext DEFAULT 'NULL',
+	`PatientVisitID` char(36) NOT NULL,
+	`PatientID` char(36) NOT NULL,
+	`ParentVisitID` char(36) DEFAULT 'NULL',
+	`IsHospitalCase` tinyint(1) NOT NULL,
+	`HospitalName` varchar(250) DEFAULT 'NULL',
+	`DateAdded` datetime(3) DEFAULT 'NULL',
+	`VisitType` int(11) NOT NULL,
+	`DestinationOfRefferal` varchar(50) DEFAULT 'NULL',
+	`PainLevel` int(11) NOT NULL,
+	`VisitCreationMethod` int(11) NOT NULL,
+	`__sysChangeTxBsn` bigint(20) DEFAULT 'NULL',
+	`__sysInsertTxBsn` bigint(20) DEFAULT 'NULL',
+	`__sysTrackingContext` char(36) DEFAULT 'NULL'
+);
+--> statement-breakpoint
+CREATE TABLE `pbspexamchecklistitem` (
+	`BodySystemChecklistItemID` bigint(20) NOT NULL,
+	`Value` varchar(10) DEFAULT 'NULL',
+	`Comments` longtext DEFAULT 'NULL',
+	`YearOfOnset` varchar(10) DEFAULT 'NULL',
+	`StillAProblem` tinyint(1) NOT NULL,
+	`PBSPExamChecklistItemID` char(36) NOT NULL,
+	`PatientBodySystemReviewID` char(36) NOT NULL,
+	`__sysChangeTxBsn` bigint(20) DEFAULT 'NULL',
+	`__sysInsertTxBsn` bigint(20) DEFAULT 'NULL',
+	`__sysTrackingContext` char(36) DEFAULT 'NULL'
+);
+--> statement-breakpoint
+CREATE TABLE `permissions` (
+	`PermissionID` bigint(20) NOT NULL,
+	`PermissionName` varchar(150) NOT NULL,
+	`PermissionType` int(11) NOT NULL,
+	`__sysChangeTxBsn` bigint(20) DEFAULT 'NULL',
+	`__sysInsertTxBsn` bigint(20) DEFAULT 'NULL',
+	`__sysTrackingContext` char(36) DEFAULT 'NULL'
+);
+--> statement-breakpoint
+CREATE TABLE `pfihereditarydiseases` (
+	`Description` varchar(250) DEFAULT 'NULL',
+	`PFIHereditaryDiseases` char(36) NOT NULL,
+	`MedicalConditionID` char(36) NOT NULL,
+	`PatientID` char(36) NOT NULL,
+	`__sysChangeTxBsn` bigint(20) DEFAULT 'NULL',
+	`__sysInsertTxBsn` bigint(20) DEFAULT 'NULL',
+	`__sysTrackingContext` char(36) DEFAULT 'NULL'
+);
+--> statement-breakpoint
+CREATE TABLE `ppfghistorycheclistitems` (
+	`PatientID` char(36) NOT NULL,
+	`Age35` int(11) NOT NULL,
+	`Hypertension` int(11) NOT NULL,
+	`HeartDisease` int(11) NOT NULL,
+	`Cancer` int(11) NOT NULL,
+	`Diabetes` int(11) NOT NULL,
+	`Epilepsy` int(11) NOT NULL,
+	`Hemophilia` int(11) NOT NULL,
+	`SickleCell` int(11) NOT NULL,
+	`TSD` int(11) NOT NULL,
+	`OID` varchar(250) DEFAULT 'NULL',
+	`Twins` int(11) NOT NULL,
+	`NeuralTubeDefect` int(11) NOT NULL,
+	`DMR` int(11) NOT NULL,
+	`PCA` int(11) NOT NULL,
+	`PriorStillbirth` int(11) NOT NULL,
+	`Notes` varchar(500) DEFAULT 'NULL',
+	`__sysChangeTxBsn` bigint(20) DEFAULT 'NULL',
+	`__sysInsertTxBsn` bigint(20) DEFAULT 'NULL',
+	`__sysTrackingContext` char(36) DEFAULT 'NULL'
+);
+--> statement-breakpoint
+CREATE TABLE `prenatalflowsheetitems` (
+	`FlowSheetItemID` char(36) NOT NULL,
+	`PatientVisitID` char(36) NOT NULL,
+	`ReadingDate` datetime(3) NOT NULL,
+	`Headache` tinyint(1) NOT NULL,
+	`Bleeding` tinyint(1) NOT NULL,
+	`CP` tinyint(1) NOT NULL,
+	`Nausea` tinyint(1) NOT NULL,
+	`Vomiting` tinyint(1) NOT NULL,
+	`Swelling` tinyint(1) NOT NULL,
+	`FetalMovement` int(11) NOT NULL,
+	`Weight` double DEFAULT 'NULL',
+	`WeightUnit` varchar(50) DEFAULT 'NULL',
+	`SBP` int(11) DEFAULT 'NULL',
+	`DBP` int(11) DEFAULT 'NULL',
+	`UrineProtein` int(11) DEFAULT 'NULL',
+	`UrineGluccose` int(11) DEFAULT 'NULL',
+	`FHcm` double DEFAULT 'NULL',
+	`Position` int(11) DEFAULT 'NULL',
+	`Cervix` varchar(150) DEFAULT 'NULL',
+	`Edema` tinyint(1) NOT NULL,
+	`Notes` varchar(500) DEFAULT 'NULL',
+	`__sysChangeTxBsn` bigint(20) DEFAULT 'NULL',
+	`__sysInsertTxBsn` bigint(20) DEFAULT 'NULL',
+	`__sysTrackingContext` char(36) DEFAULT 'NULL'
+);
+--> statement-breakpoint
+CREATE TABLE `procedurehistory` (
+	`Procedure` varchar(250) DEFAULT 'NULL',
+	`ProcedureDate` datetime(3) DEFAULT 'NULL',
+	`Physician` varchar(250) DEFAULT 'NULL',
+	`location` varchar(250) DEFAULT 'NULL',
+	`Result` longtext DEFAULT 'NULL',
+	`ProcedureHistoryID` char(36) NOT NULL,
+	`MedicalProcedureID` char(36) NOT NULL,
+	`PatientID` char(36) NOT NULL,
+	`Tooth` varchar(50) DEFAULT 'NULL',
+	`ToothSurface` varchar(50) DEFAULT 'NULL',
+	`ImplantDesign` varchar(50) DEFAULT 'NULL',
+	`ImplantMechanism` varchar(50) DEFAULT 'NULL',
+	`ImplantBodyDesign` varchar(50) DEFAULT 'NULL',
+	`ImplantSurface` varchar(50) DEFAULT 'NULL',
+	`ImplantMaterial` varchar(50) DEFAULT 'NULL',
+	`ToothLeftRight` varchar(50) DEFAULT 'NULL',
+	`ToothUpperLower` varchar(50) DEFAULT 'NULL',
+	`ToothType` varchar(50) DEFAULT 'NULL',
+	`__sysChangeTxBsn` bigint(20) DEFAULT 'NULL',
+	`__sysInsertTxBsn` bigint(20) DEFAULT 'NULL',
+	`__sysTrackingContext` char(36) DEFAULT 'NULL'
+);
+--> statement-breakpoint
+CREATE TABLE `pvassessmentconditions` (
+	`DateDiagnosed` datetime(3) DEFAULT 'NULL',
+	`AgeOfOnset` varchar(50) DEFAULT 'NULL',
+	`ConditionStatus` varchar(50) DEFAULT 'NULL',
+	`Comments` longtext DEFAULT 'NULL',
+	`PVAssessmentConditionID` char(36) NOT NULL,
+	`MedicalConditionID` char(36) NOT NULL,
+	`PatientVisitID` char(36) NOT NULL,
+	`IsDeleted` tinyint(1) NOT NULL,
+	`__sysChangeTxBsn` bigint(20) DEFAULT 'NULL',
+	`__sysInsertTxBsn` bigint(20) DEFAULT 'NULL',
+	`__sysTrackingContext` char(36) DEFAULT 'NULL'
+);
+--> statement-breakpoint
+CREATE TABLE `pvfertilitydetails` (
+	`PatientVisitID` char(36) NOT NULL,
+	`SOName` varchar(250) DEFAULT 'NULL',
+	`SOAge` int(11) DEFAULT 'NULL',
+	`FSH` tinyint(1) NOT NULL,
+	`FSHDate` datetime(3) DEFAULT 'NULL',
+	`FSHNote` varchar(500) DEFAULT 'NULL',
+	`FSHLH` tinyint(1) NOT NULL,
+	`FSHLHDate` datetime(3) DEFAULT 'NULL',
+	`FSHLHNote` varchar(500) DEFAULT 'NULL',
+	`LMPDate` datetime(3) DEFAULT 'NULL',
+	`AgonistLong` tinyint(1) NOT NULL,
+	`AgonistLongDate` datetime(3) DEFAULT 'NULL',
+	`AgonistLongNote` varchar(500) DEFAULT 'NULL',
+	`Antagonist` tinyint(1) NOT NULL,
+	`AntagonistDate` datetime(3) DEFAULT 'NULL',
+	`AntagonistNote` varchar(500) DEFAULT 'NULL',
+	`IUI` tinyint(1) NOT NULL,
+	`IUIDate` datetime(3) DEFAULT 'NULL',
+	`IUINote` varchar(500) DEFAULT 'NULL',
+	`ICSI` tinyint(1) NOT NULL,
+	`ICSIDate` datetime(3) DEFAULT 'NULL',
+	`ICSINote` varchar(500) DEFAULT 'NULL',
+	`TESA` tinyint(1) NOT NULL,
+	`TESADate` datetime(3) DEFAULT 'NULL',
+	`TESANote` varchar(500) DEFAULT 'NULL',
+	`__sysChangeTxBsn` bigint(20) DEFAULT 'NULL',
+	`__sysInsertTxBsn` bigint(20) DEFAULT 'NULL',
+	`__sysTrackingContext` char(36) DEFAULT 'NULL'
+);
+--> statement-breakpoint
+CREATE TABLE `pvfertilityflowsheetitems` (
+	`PVFertilityFlowSheetItem` char(36) NOT NULL,
+	`PatientVisitID` char(36) NOT NULL,
+	`ItemDate` datetime(3) NOT NULL,
+	`Day` int(11) DEFAULT 'NULL',
+	`Gonad` double DEFAULT 'NULL',
+	`AAnt` double DEFAULT 'NULL',
+	`RtOvery` int(11) DEFAULT 'NULL',
+	`LtOvery` int(11) DEFAULT 'NULL',
+	`EndNote` varchar(500) DEFAULT 'NULL',
+	`__sysChangeTxBsn` bigint(20) DEFAULT 'NULL',
+	`__sysInsertTxBsn` bigint(20) DEFAULT 'NULL',
+	`__sysTrackingContext` char(36) DEFAULT 'NULL'
+);
+--> statement-breakpoint
+CREATE TABLE `pvgprescription` (
+	`PVGPrescriptionID` char(36) NOT NULL,
+	`PatientVisitID` char(36) NOT NULL,
+	`DVODS` varchar(20) DEFAULT 'NULL',
+	`DVODC` varchar(20) DEFAULT 'NULL',
+	`DVODA` varchar(20) DEFAULT 'NULL',
+	`DVODP` varchar(20) DEFAULT 'NULL',
+	`DVODB` varchar(20) DEFAULT 'NULL',
+	`DVOSS` varchar(20) DEFAULT 'NULL',
+	`DVOSC` varchar(20) DEFAULT 'NULL',
+	`DVOSA` varchar(50) DEFAULT 'NULL',
+	`DVOSP` varchar(20) DEFAULT 'NULL',
+	`DVOSB` varchar(20) DEFAULT 'NULL',
+	`NVODS` varchar(20) DEFAULT 'NULL',
+	`NVODC` varchar(20) DEFAULT 'NULL',
+	`NVODA` varchar(20) DEFAULT 'NULL',
+	`NVODP` varchar(20) DEFAULT 'NULL',
+	`NVODB` varchar(20) DEFAULT 'NULL',
+	`NVOSS` varchar(20) DEFAULT 'NULL',
+	`NVOSC` varchar(20) DEFAULT 'NULL',
+	`NVOSA` varchar(20) DEFAULT 'NULL',
+	`NVOSP` varchar(20) DEFAULT 'NULL',
+	`NVOSB` varchar(20) DEFAULT 'NULL',
+	`PD` varchar(20) DEFAULT 'NULL',
+	`BVD` varchar(20) DEFAULT 'NULL',
+	`Remarks` longtext DEFAULT 'NULL',
+	`__sysChangeTxBsn` bigint(20) DEFAULT 'NULL',
+	`__sysInsertTxBsn` bigint(20) DEFAULT 'NULL',
+	`__sysTrackingContext` char(36) DEFAULT 'NULL'
+);
+--> statement-breakpoint
+CREATE TABLE `pvpinitialexam` (
+	`PatientVisitID` char(36) NOT NULL,
+	`PrePregWeight` int(11) NOT NULL,
+	`CurrentWeight` int(11) NOT NULL,
+	`Height` int(11) NOT NULL,
+	`BP` int(11) NOT NULL,
+	`HEENT` int(11) NOT NULL,
+	`NeckThyroid` int(11) NOT NULL,
+	`Lungs` int(11) NOT NULL,
+	`Heart` int(11) NOT NULL,
+	`Breats` int(11) NOT NULL,
+	`Abdomen` int(11) NOT NULL,
+	`Extremities` int(11) NOT NULL,
+	`Neuro` int(11) NOT NULL,
+	`Skin` int(11) NOT NULL,
+	`ExtGenetalia` int(11) NOT NULL,
+	`Vagina` int(11) NOT NULL,
+	`Cervix` int(11) NOT NULL,
+	`Ulterus` int(11) NOT NULL,
+	`Adnexae` int(11) NOT NULL,
+	`DiagonalConj` int(11) NOT NULL,
+	`MidPelvis` int(11) NOT NULL,
+	`PubicArch` int(11) NOT NULL,
+	`Bituberous` int(11) NOT NULL,
+	`PelvisType` int(11) NOT NULL,
+	`VagDelivPrognosis` int(11) NOT NULL,
+	`Notes` varchar(500) DEFAULT 'NULL',
+	`__sysChangeTxBsn` bigint(20) DEFAULT 'NULL',
+	`__sysInsertTxBsn` bigint(20) DEFAULT 'NULL',
+	`__sysTrackingContext` char(36) DEFAULT 'NULL'
+);
+--> statement-breakpoint
+CREATE TABLE `pvplanmedications` (
+	`Indication` longtext DEFAULT 'NULL',
+	`Dose` varchar(250) DEFAULT 'NULL',
+	`Period` varchar(250) DEFAULT 'NULL',
+	`Frequency` double DEFAULT 'NULL',
+	`FrequencyUnit` varchar(50) DEFAULT 'NULL',
+	`QuantityNumber` varchar(50) DEFAULT 'NULL',
+	`QuantityForm` varchar(50) DEFAULT 'NULL',
+	`Route` varchar(50) DEFAULT 'NULL',
+	`PrescribedBy` char(36) DEFAULT 'NULL',
+	`PrescriptionDate` datetime(3) DEFAULT 'NULL',
+	`Notes` longtext DEFAULT 'NULL',
+	`SuggestedBy` char(36) DEFAULT 'NULL',
+	`SuggestionDate` datetime(3) DEFAULT 'NULL',
+	`IsPrescribed` tinyint(1) NOT NULL,
+	`PVPlanMedicationID` char(36) NOT NULL,
+	`MedicineID` char(36) NOT NULL,
+	`PatientVisitID` char(36) NOT NULL,
+	`PVAssessmentConditionID` char(36) DEFAULT 'NULL',
+	`__sysChangeTxBsn` bigint(20) DEFAULT 'NULL',
+	`__sysInsertTxBsn` bigint(20) DEFAULT 'NULL',
+	`__sysTrackingContext` char(36) DEFAULT 'NULL'
+);
+--> statement-breakpoint
+CREATE TABLE `pvpmhconditions` (
+	`DateDiagnosed` datetime(3) DEFAULT 'NULL',
+	`AgeOfOnset` varchar(50) DEFAULT 'NULL',
+	`ConditionStatus` varchar(50) DEFAULT 'NULL',
+	`PVPMHConditionID` char(36) NOT NULL,
+	`MedicalConditionID` char(36) NOT NULL,
+	`PatientVisitID` char(36) NOT NULL,
+	`__sysChangeTxBsn` bigint(20) DEFAULT 'NULL',
+	`__sysInsertTxBsn` bigint(20) DEFAULT 'NULL',
+	`__sysTrackingContext` char(36) DEFAULT 'NULL'
+);
+--> statement-breakpoint
+CREATE TABLE `pvpmhmedications` (
+	`PVPMHMedicationID` char(36) NOT NULL,
+	`Dose` varchar(250) DEFAULT 'NULL',
+	`Period` varchar(250) DEFAULT 'NULL',
+	`Frequency` double DEFAULT 'NULL',
+	`FrequencyUnit` varchar(50) DEFAULT 'NULL',
+	`QuantityNumber` varchar(50) DEFAULT 'NULL',
+	`QuantityForm` varchar(50) DEFAULT 'NULL',
+	`Route` varchar(50) DEFAULT 'NULL',
+	`PrescribedBy` varchar(50) DEFAULT 'NULL',
+	`PrescriptionDate` datetime(3) DEFAULT 'NULL',
+	`Notes` longtext DEFAULT 'NULL',
+	`Indication` longtext DEFAULT 'NULL',
+	`MedicineID` char(36) NOT NULL,
+	`PatientVisitID` char(36) NOT NULL,
+	`__sysChangeTxBsn` bigint(20) DEFAULT 'NULL',
+	`__sysInsertTxBsn` bigint(20) DEFAULT 'NULL',
+	`__sysTrackingContext` char(36) DEFAULT 'NULL'
+);
+--> statement-breakpoint
+CREATE TABLE `pvpregnancydetails` (
+	`PatientVisitID` char(36) NOT NULL,
+	`FatherOfBaby` varchar(250) DEFAULT 'NULL',
+	`LMPDate` datetime(3) DEFAULT 'NULL',
+	`LMPGestAgeWeeks` int(11) DEFAULT 'NULL',
+	`LMPGestAgeDays` int(11) DEFAULT 'NULL',
+	`LMPEDC` datetime(3) DEFAULT 'NULL',
+	`LMPIsSure` tinyint(1) NOT NULL,
+	`FHRDDate` datetime(3) DEFAULT 'NULL',
+	`FHRDGestAgeWeeks` int(11) DEFAULT 'NULL',
+	`FHRDGestAgeDays` int(11) DEFAULT 'NULL',
+	`FHRDEDC` datetime(3) DEFAULT 'NULL',
+	`InitialExamDate` datetime(3) DEFAULT 'NULL',
+	`InitialExamGestAgeWeeks` int(11) DEFAULT 'NULL',
+	`InitialExamGestDays` int(11) DEFAULT 'NULL',
+	`InitialExamEDC` datetime(3) DEFAULT 'NULL',
+	`UltraSoundDate` datetime(3) DEFAULT 'NULL',
+	`UltraSoundGestAgeWeeks` int(11) DEFAULT 'NULL',
+	`UltraSoundGestAgeDays` int(11) DEFAULT 'NULL',
+	`UltraSoundEDC` datetime(3) DEFAULT 'NULL',
+	`UltraSound2Date` datetime(3) DEFAULT 'NULL',
+	`UltraSound2GestAgeWeeks` int(11) DEFAULT 'NULL',
+	`UltraSound2GestAgeDays` int(11) DEFAULT 'NULL',
+	`UltraSound2EDC` datetime(3) DEFAULT 'NULL',
+	`ConsensusEDC` datetime(3) DEFAULT 'NULL',
+	`PStartDate` datetime(3) DEFAULT 'NULL',
+	`PEDeliveryDate` datetime(3) DEFAULT 'NULL',
+	`PActaulDeliveryDate` datetime(3) DEFAULT 'NULL',
+	`DeliveryGestAge` double DEFAULT 'NULL',
+	`LaborLength` double DEFAULT 'NULL',
+	`DeliveryType` int(11) NOT NULL,
+	`OC` varchar(500) DEFAULT 'NULL',
+	`InfantSex` int(11) NOT NULL,
+	`InfantName` varchar(250) DEFAULT 'NULL',
+	`InfantWeight` double DEFAULT 'NULL',
+	`InfantWeightUnit` varchar(50) DEFAULT 'NULL',
+	`NC` varchar(500) DEFAULT 'NULL',
+	`IsTwins` tinyint(1) NOT NULL,
+	`__sysChangeTxBsn` bigint(20) DEFAULT 'NULL',
+	`__sysInsertTxBsn` bigint(20) DEFAULT 'NULL',
+	`__sysTrackingContext` char(36) DEFAULT 'NULL'
+);
+--> statement-breakpoint
+CREATE TABLE `pvpriskstratificationchecks` (
+	`PatientVisitID` char(36) NOT NULL,
+	`Age1535` tinyint(1) NOT NULL,
+	`Edu8` tinyint(1) NOT NULL,
+	`CardiacDisease12` tinyint(1) NOT NULL,
+	`ActiveTuberculsis` tinyint(1) NOT NULL,
+	`CPD` tinyint(1) NOT NULL,
+	`Thrombophlebitis` tinyint(1) NOT NULL,
+	`Endocrinopathy` tinyint(1) NOT NULL,
+	`Epilepsy` tinyint(1) NOT NULL,
+	`Infertility` tinyint(1) NOT NULL,
+	`Abortions2` tinyint(1) NOT NULL,
+	`Deliveries6` tinyint(1) NOT NULL,
+	`PretermSGA` tinyint(1) NOT NULL,
+	`PBaby4000` tinyint(1) NOT NULL,
+	`IsoimmunizationABO` tinyint(1) NOT NULL,
+	`HemorrhagePD` tinyint(1) NOT NULL,
+	`PPreeclampsia` tinyint(1) NOT NULL,
+	`NoFamilySupport` tinyint(1) NOT NULL,
+	`SecondWithin12Months` tinyint(1) NOT NULL,
+	`SAD` tinyint(1) NOT NULL,
+	`Age39` tinyint(1) NOT NULL,
+	`Diabetes` tinyint(1) NOT NULL,
+	`Hypertension` tinyint(1) NOT NULL,
+	`Age391` tinyint(1) NOT NULL,
+	`CardiacDisease34` tinyint(1) NOT NULL,
+	`CRD` tinyint(1) NOT NULL,
+	`CCA` tinyint(1) NOT NULL,
+	`Hemogobinopathies` tinyint(1) NOT NULL,
+	`IsoimmunizationRh` tinyint(1) NOT NULL,
+	`SADAbuse` tinyint(1) NOT NULL,
+	`HabitualAbortions` tinyint(1) NOT NULL,
+	`IncompetentCervix` tinyint(1) NOT NULL,
+	`FetalNeonatalDeath` tinyint(1) NOT NULL,
+	`NeuroDamagedInfant` tinyint(1) NOT NULL,
+	`SocialProblems` tinyint(1) NOT NULL,
+	`NoRisk` tinyint(1) NOT NULL,
+	`AtRisk` tinyint(1) NOT NULL,
+	`AtHighRisk` tinyint(1) NOT NULL,
+	`__sysChangeTxBsn` bigint(20) DEFAULT 'NULL',
+	`__sysInsertTxBsn` bigint(20) DEFAULT 'NULL',
+	`__sysTrackingContext` char(36) DEFAULT 'NULL'
+);
+--> statement-breakpoint
+CREATE TABLE `pvrevisits` (
+	`RevisitDate` datetime(3) NOT NULL,
+	`Comments` longtext DEFAULT 'NULL',
+	`PVRevisitID` char(36) NOT NULL,
+	`PatientVisitID` char(36) NOT NULL,
+	`IsDeleted` tinyint(1) NOT NULL,
+	`Notes` varchar(400) DEFAULT 'NULL',
+	`ProcedureHistoryID` char(36) DEFAULT 'NULL',
+	`PVPlanProceduresCPTID` char(36) DEFAULT 'NULL',
+	`__sysChangeTxBsn` bigint(20) DEFAULT 'NULL',
+	`__sysInsertTxBsn` bigint(20) DEFAULT 'NULL',
+	`__sysTrackingContext` char(36) DEFAULT 'NULL'
+);
+--> statement-breakpoint
+CREATE TABLE `specialities` (
+	`SpecialityName` varchar(150) NOT NULL,
+	`Description` longtext DEFAULT 'NULL',
+	`SpecialityID` char(36) NOT NULL,
+	`SpecialtyGroup` varchar(2) NOT NULL,
+	`SpecialtyID` varchar(50) DEFAULT 'NULL',
+	`__sysChangeTxBsn` bigint(20) DEFAULT 'NULL',
+	`__sysInsertTxBsn` bigint(20) DEFAULT 'NULL',
+	`__sysTrackingContext` char(36) DEFAULT 'NULL'
+);
+--> statement-breakpoint
+CREATE TABLE `symptoms` (
+	`SymptomName` longtext NOT NULL,
+	`Description` longtext DEFAULT 'NULL',
+	`IsVerified` tinyint(1) NOT NULL,
+	`AddedBy` varchar(250) NOT NULL,
+	`DateAdded` datetime(3) DEFAULT 'NULL',
+	`SymptomID` char(36) NOT NULL,
+	`__sysChangeTxBsn` bigint(20) DEFAULT 'NULL',
+	`__sysInsertTxBsn` bigint(20) DEFAULT 'NULL',
+	`__sysTrackingContext` char(36) DEFAULT 'NULL'
+);
+--> statement-breakpoint
+CREATE TABLE `transactioncategories` (
+	`TransactionCategoryName` varchar(250) NOT NULL,
+	`IsIncome` tinyint(1) NOT NULL,
+	`TransactionCategoryID` char(36) NOT NULL,
+	`HCenterID` char(36) NOT NULL,
+	`IsCheckup` tinyint(1) NOT NULL,
+	`DefaultPrice` double NOT NULL,
+	`IsSystem` tinyint(1) NOT NULL,
+	`MedicalProcedureID` char(36) DEFAULT 'NULL',
+	`DiagnosticTestID` char(36) DEFAULT 'NULL',
+	`CPTCodeID` char(36) DEFAULT 'NULL',
+	`Price2` double DEFAULT 'NULL',
+	`Price3` double DEFAULT 'NULL',
+	`HCPCID` char(36) DEFAULT 'NULL',
+	`__sysChangeTxBsn` bigint(20) DEFAULT 'NULL',
+	`__sysInsertTxBsn` bigint(20) DEFAULT 'NULL',
+	`__sysTrackingContext` char(36) DEFAULT 'NULL'
+);
+--> statement-breakpoint
+CREATE TABLE `wallets` (
+	`WalletName` varchar(250) NOT NULL,
+	`WalletID` char(36) NOT NULL,
+	`HCenterID` char(36) NOT NULL,
+	`IsDefault` tinyint(1) NOT NULL,
+	`IsSystem` tinyint(1) NOT NULL,
+	`IsCacheBox` tinyint(1) NOT NULL,
+	`__sysChangeTxBsn` bigint(20) DEFAULT 'NULL',
+	`__sysInsertTxBsn` bigint(20) DEFAULT 'NULL',
+	`__sysTrackingContext` char(36) DEFAULT 'NULL'
+);
+--> statement-breakpoint
+CREATE TABLE `__sysocsdeletedrows` (
+	`__sysTName` varchar(129) NOT NULL,
+	`__sysRK` blob NOT NULL,
+	`__sysDeleteTxBsn` bigint(20) NOT NULL,
+	`__sysInsertTxCsn` bigint(20) DEFAULT 'NULL',
+	`__sysDeletedTime` datetime(3) DEFAULT 'NULL',
+	`__sysTrackingContext` char(36) DEFAULT 'NULL'
+);
+--> statement-breakpoint
+CREATE TABLE `__sysocstrackedobjects` (
+	`__sysTName` varchar(129) NOT NULL,
+	`__sysTrackOpt` int(11) DEFAULT 'NULL',
+	`__sysTrackType` int(11) DEFAULT 'NULL',
+	`__sysTrackColOrd` int(11) DEFAULT 'NULL'
+);
+--> statement-breakpoint
+CREATE TABLE `__systxcommitsequence` (
+	`__sysTxBsn` bigint(20) NOT NULL,
+	`__sysTxCsn` bigint(20) NOT NULL,
+	`__sysCommitTime` datetime(3) DEFAULT 'NULL'
+);
+--> statement-breakpoint
+CREATE INDEX `__sysTxCommitSequence_Index` ON `__systxcommitsequence` (`__sysTxBsn`);
+*/

@@ -1,0 +1,43 @@
+# Dependencies
+node_modules/
+.pnpm-store/
+
+# Build output
+dist/
+build/
+out/
+.turbo/
+.next/
+*.tsbuildinfo
+
+# Env files
+.env
+.env.local
+.env.*.local
+.env.bootstrap
+!.env.example
+
+# Logs
+*.log
+npm-debug.log*
+pnpm-debug.log*
+
+# Editor
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Coverage
+coverage/
+
+# Uploads (dev local-disk storage)
+apps/api/uploads/
+!apps/api/uploads/.gitkeep
+
+# Drizzle migrations are committed; introspection scratch dirs are not
+apps/api/drizzle/meta/_journal.json.bak

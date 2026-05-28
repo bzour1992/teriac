@@ -1,0 +1,15 @@
+packages:
+  - "apps/*"
+  - "packages/*"
+
+# pnpm 11 requires explicit per-package approval for postinstall build scripts.
+# Decisions:
+#   - @nestjs/core  → true   (license banner only, harmless)
+#   - bcrypt        → true   (native build is required for the module to work)
+#   - esbuild       → true   (native binary required by Vite + drizzle-kit)
+#   - @scarf/scarf  → false  (anonymous telemetry; we opt out for a healthcare app)
+allowBuilds:
+  '@nestjs/core': true
+  '@scarf/scarf': false
+  bcrypt: true
+  esbuild: true

@@ -1,0 +1,7 @@
+{
+  "extends": "@teriac/config/tsconfig/web.json",
+  "compilerOptions": {
+    "rootDir": "src"
+  },
+  "include": ["src/**/*", "tailwind.preset.ts"]
+}
